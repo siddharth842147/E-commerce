@@ -1,4 +1,11 @@
-// Export all schema tables here
-// e.g. export * from "./users";
-
-export {};
+export * from "./profiles";
+export * from "./addresses";
+export * from "./categories";
+export * from "./products";
+export * from "./product_variants";
+export * from "./cart_items";
+export * from "./coupons";
+export * from "./orders";
+export * from "./order_items";
+export * from "./payments";
+export * from "./notifications_log";
