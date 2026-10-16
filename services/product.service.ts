@@ -46,7 +46,11 @@ export async function queryProducts(filters: ProductFilters): Promise<PaginatedP
       .from(categories)
       .where(eq(categories.slug, categorySlug))
       .limit(1);
-    if (cat) conditions.push(eq(products.categoryId, cat.id));
+    if (!cat) {
+      // Unknown slug — return empty result immediately rather than silently dropping the filter
+      return { items: [], total: 0, page, limit, totalPages: 0 };
+    }
+    conditions.push(eq(products.categoryId, cat.id));
   }
 
   const where = conditions.length > 0 ? and(...conditions) : undefined;

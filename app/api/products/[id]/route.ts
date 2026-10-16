@@ -20,7 +20,11 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id } = await params;
-  const result = await deleteProduct(id);
-  return NextResponse.json(result, { status: result.success ? 200 : 400 });
+  try {
+    const { id } = await params;
+    const result = await deleteProduct(id);
+    return NextResponse.json(result, { status: result.success ? 200 : 400 });
+  } catch (_e) {
+    return NextResponse.json(err("Internal server error"), { status: 500 });
+  }
 }

@@ -21,6 +21,23 @@ import { queryProducts, getProductBySlug } from "@/services/product.service";
 import type { ProductVariant } from "@/types/db";
 import type { PaginatedProducts, ProductWithVariants } from "@/services/product.service";
 
+/**
+ * Derives the Supabase Storage path from a public URL.
+ * The public URL format is:  <SUPABASE_URL>/storage/v1/object/public/<bucket>/<path>
+ * We extract everything after the bucket name as the storage path.
+ */
+function deriveStoragePath(publicUrl: string): string | null {
+  try {
+    const BUCKET = "product-images";
+    const marker = `/object/public/${BUCKET}/`;
+    const idx = publicUrl.indexOf(marker);
+    if (idx === -1) return null;
+    return publicUrl.slice(idx + marker.length);
+  } catch {
+    return null;
+  }
+}
+
 // ── Public ─────────────────────────────────────────────────────────────────
 
 export async function getProducts(
@@ -155,7 +172,24 @@ export async function updateProduct(
     }
 
     const keepImages = formData.getAll("existingImages") as string[];
-    if (newUrls.length > 0 || keepImages.length > 0) {
+
+    // Delete blobs that were dropped from the images list (finding: orphaned storage blobs)
+    if (keepImages.length > 0 || newUrls.length > 0) {
+      const [current] = await db
+        .select({ images: products.images })
+        .from(products)
+        .where(eq(products.id, id))
+        .limit(1);
+
+      if (current) {
+        const currentImages = (current.images as string[]) ?? [];
+        const orphaned = currentImages.filter((u) => !keepImages.includes(u));
+        for (const url of orphaned) {
+          const path = deriveStoragePath(url);
+          if (path) await deleteProductImage(path);
+        }
+      }
+
       updates.images = [...keepImages, ...newUrls];
     }
 
@@ -312,12 +346,15 @@ export async function deleteVariant(variantId: string): Promise<ApiResponse<null
 export async function removeProductImage(
   productId: string,
   imageUrl: string,
-  imagePath: string
 ): Promise<ApiResponse<null>> {
   await requireAdmin();
 
   try {
-    await deleteProductImage(imagePath);
+    // Derive the storage path server-side from the public URL — never trust a caller-supplied path
+    const storagePath = deriveStoragePath(imageUrl);
+    if (storagePath) {
+      await deleteProductImage(storagePath);
+    }
 
     const [product] = await db
       .select({ images: products.images })
