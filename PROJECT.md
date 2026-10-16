@@ -66,6 +66,16 @@ npx drizzle-kit migrate    # Run migrations
 npx drizzle-kit studio     # Open Drizzle Studio
 ```
 
+## Seeding
+
+```bash
+npm run db:seed    # Insert 5 categories, 20 products+variants, 1 admin user
+```
+
+Admin credentials (local dev only):
+- Email: `admin@kartiva.dev`
+- Password: `Admin@kartiva123`
+
 ## Status
 
 🚧 Project scaffolded — no features implemented yet.
