@@ -1,6 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
-  <rect width="600" height="600" fill="#1e3a8a"/>
-  <circle cx="300" cy="300" r="160" fill="white" opacity="0.12"/>
-  <text x="50%" y="48%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="28" font-weight="bold" fill="white">Fitness & Yoga</text>
-  <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="16" fill="white" opacity="0.8">Active Lifestyle</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <defs>
+    <linearGradient id="fit-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+    <linearGradient id="iron" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#475569" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <filter id="glow-fit" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+  <ellipse cx="200" cy="245" rx="120" ry="20" fill="#000000" opacity="0.3" filter="blur(8px)" />
+  <!-- Dumbbell 1 -->
+  <g filter="url(#glow-fit)" transform="rotate(-20 180 160)">
+    <!-- Bar -->
+    <rect x="130" y="152" width="140" height="16" rx="8" fill="#94a3b8" />
+    <!-- Grip -->
+    <rect x="175" y="150" width="50" height="20" rx="4" fill="#38bdf8" />
+    <!-- Left Weight -->
+    <rect x="110" y="125" width="22" height="70" rx="10" fill="url(#iron)" stroke="url(#fit-blue)" stroke-width="3" />
+    <rect x="100" y="135" width="12" height="50" rx="6" fill="url(#iron)" />
+    <!-- Right Weight -->
+    <rect x="268" y="125" width="22" height="70" rx="10" fill="url(#iron)" stroke="url(#fit-blue)" stroke-width="3" />
+    <rect x="288" y="135" width="12" height="50" rx="6" fill="url(#iron)" />
+  </g>
+  <!-- Kettlebell beside it -->
+  <g filter="url(#glow-fit)" transform="translate(210, 140)">
+    <!-- Handle -->
+    <path d="M25 40 C25 15 65 15 65 40" stroke="#38bdf8" stroke-width="12" stroke-linecap="round" fill="none" />
+    <!-- Ball Body -->
+    <circle cx="45" cy="65" r="32" fill="url(#iron)" stroke="#0284c7" stroke-width="4" />
+    <circle cx="45" cy="65" r="16" fill="#0f172a" />
+    <text x="45" y="70" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#38bdf8">12</text>
+  </g>
+  <!-- Sparkles -->
+  <circle cx="100" cy="80" r="3" fill="#bae6fd" />
+  <circle cx="310" cy="90" r="3.5" fill="#bae6fd" />
 </svg>

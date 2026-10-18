@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { Suspense } from "react";
 import { Toaster } from "sonner";
+import { CartToast } from "@/components/shared/CartToast";
 import { Navbar } from "@/components/shared/Navbar";
 import { Footer } from "@/components/shared/Footer";
 import { CartProviderServer } from "@/components/shared/CartProviderServer";
@@ -112,6 +113,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </Suspense>
         <main className="flex flex-1 flex-col">{children}</main>
         <Footer />
+        <CartToast />
         <Toaster richColors position="top-right" />
       </body>
     </html>

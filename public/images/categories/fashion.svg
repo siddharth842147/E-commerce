@@ -1,6 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
-  <rect width="600" height="600" fill="#9a3412"/>
-  <circle cx="300" cy="300" r="160" fill="white" opacity="0.12"/>
-  <text x="50%" y="48%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="28" font-weight="bold" fill="white">Apparel & Ethnic</text>
-  <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="16" fill="white" opacity="0.8">Trending Fits</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <defs>
+    <linearGradient id="fashion-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffedd5" />
+      <stop offset="100%" stop-color="#fdba74" />
+    </linearGradient>
+    <linearGradient id="bag-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fb923c" />
+      <stop offset="100%" stop-color="#c2410c" />
+    </linearGradient>
+    <filter id="glow-f" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+  <ellipse cx="200" cy="245" rx="120" ry="20" fill="#000000" opacity="0.3" filter="blur(8px)" />
+  <!-- Shopping Bag -->
+  <g filter="url(#glow-f)">
+    <rect x="130" y="110" width="140" height="130" rx="16" fill="url(#bag-grad)" />
+    <!-- Bag Handle -->
+    <path d="M165 110 V70 C165 52 235 52 235 70 V110" stroke="#f97316" stroke-width="10" stroke-linecap="round" fill="none" />
+    <!-- Fold & Details -->
+    <path d="M130 145 H270" stroke="#ea580c" stroke-width="3" />
+    <circle cx="200" cy="180" r="22" fill="#ffffff" opacity="0.25" />
+    <path d="M192 180 L208 180 M200 172 L200 188" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+  </g>
+  <!-- Sunglasses resting on bag -->
+  <g filter="url(#glow-f)" transform="rotate(-15 150 120)">
+    <rect x="110" y="105" width="38" height="26" rx="8" fill="#1e293b" stroke="#fcd34d" stroke-width="3" />
+    <rect x="156" y="105" width="38" height="26" rx="8" fill="#1e293b" stroke="#fcd34d" stroke-width="3" />
+    <path d="M148 116 H156" stroke="#fcd34d" stroke-width="3" />
+  </g>
+  <!-- Sparkles -->
+  <circle cx="100" cy="80" r="3" fill="#ffedd5" />
+  <circle cx="290" cy="90" r="4" fill="#ffedd5" />
 </svg>
