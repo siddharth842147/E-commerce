@@ -149,7 +149,7 @@ export function FeaturedProducts({
               >
                 <div>
                   <div className="relative aspect-square rounded-2xl overflow-hidden bg-surface-container mb-4">
-                    <Link href={`/product/${product.slug}`} className="block w-full h-full">
+                    <Link href={`/shop/${product.slug}`} className="block w-full h-full">
                       <Image
                         src={imageUrl}
                         alt={product.name}
@@ -200,7 +200,7 @@ export function FeaturedProducts({
                     </div>
                   </div>
 
-                  <Link href={`/product/${product.slug}`}>
+                  <Link href={`/shop/${product.slug}`}>
                     <h3 className="font-headline-sm text-headline-sm font-bold text-on-surface line-clamp-1 mb-2 hover:text-primary transition-colors">
                       {product.name}
                     </h3>

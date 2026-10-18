@@ -54,6 +54,12 @@ The storefront has been rebuilt to be pixel-faithful to the approved Stitch desi
 - [IntroTyping](file:///c:/E-Commerce/components/intro/IntroTyping.tsx): Configurable character-by-character typing animation with blinking cursor and screen-reader accessibility.
 - Controlled via `sessionStorage` (`kartiva_intro_seen`) with `?intro=1` URL query override for instant testing.
 
+### 4. Product Catalog & Photography
+- All 20 products across Electronics, Apparel, Home & Kitchen, Sports & Fitness, and Books are populated with multi-angle, high-resolution photography from verified studio sources, optimized via `next/image` with WebP/AVIF formats.
+- [ProductGallery](file:///c:/E-Commerce/components/shared/ProductGallery.tsx): Interactive gallery with responsive primary image display and clickable thumbnail switcher.
+- [ProductCard](file:///c:/E-Commerce/components/shared/ProductCard.tsx): Displays high-res product photos with hover zoom micro-interactions.
+- Seed data and automated update script available via [scripts/seed.ts](file:///c:/E-Commerce/scripts/seed.ts) and [scripts/update-product-images.ts](file:///c:/E-Commerce/scripts/update-product-images.ts).
+
 ## Environment Setup
 
 1. Copy `.env.example` to `.env.local`

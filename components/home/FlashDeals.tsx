@@ -136,7 +136,7 @@ export function FlashDeals({ products }: FlashDealsProps) {
                 className="group bg-surface-container-lowest rounded-3xl p-5 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
-                  <Link href={`/product/${product.slug}`} className="block relative w-full aspect-square rounded-2xl bg-surface-container-low overflow-hidden mb-4">
+                  <Link href={`/shop/${product.slug}`} className="block relative w-full aspect-square rounded-2xl bg-surface-container-low overflow-hidden mb-4">
                     <Image
                       src={imageUrl}
                       alt={product.name}
@@ -150,7 +150,7 @@ export function FlashDeals({ products }: FlashDealsProps) {
                     </span>
                   </Link>
 
-                  <Link href={`/product/${product.slug}`}>
+                  <Link href={`/shop/${product.slug}`}>
                     <h4 className="font-headline-sm text-headline-sm font-bold text-on-surface line-clamp-1 hover:text-primary transition-colors">
                       {product.name}
                     </h4>
