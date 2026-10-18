@@ -15,8 +15,14 @@ import { getCategories } from "@/actions/categories";
 export const instant = false;
 
 export const metadata = {
-  title: "Shop",
-  description: "Browse our complete collection of products",
+  title: "Shop All Products",
+  description: "Browse our complete collection of curated electronics, apparel, accessories, books, and home essentials with filters and sorting.",
+  openGraph: {
+    title: "Shop All Products | Kartiva",
+    description: "Browse our complete collection of curated electronics, apparel, accessories, books, and home essentials with filters and sorting.",
+    url: "/shop",
+    images: [{ url: "/og-shop.jpg", width: 1200, height: 630, alt: "Kartiva Shop Collection" }],
+  },
 };
 
 // ─── Types ────────────────────────────────────────────────────────────────────

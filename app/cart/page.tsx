@@ -9,8 +9,17 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { getCart } from "@/actions/cart";
 
 export const metadata = {
-  title: "Cart",
-  description: "Review your shopping cart",
+  title: "Shopping Cart",
+  description: "Review items in your shopping bag, apply promo coupons, and proceed to checkout.",
+  openGraph: {
+    title: "Shopping Cart | Kartiva",
+    description: "Review items in your shopping bag, apply promo coupons, and proceed to checkout.",
+    url: "/cart",
+  },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 function formatPrice(value: number): string {

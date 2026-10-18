@@ -1,4 +1,4 @@
-﻿"use server";
+"use server";
 
 import { revalidatePath } from "next/cache";
 import { db } from "@/db";
@@ -30,6 +30,7 @@ import {
 } from "@/services/cart.service";
 import { createOrderSchema, type CreateOrderInput } from "@/lib/validations/checkout";
 import { inngest } from "@/lib/inngest/client";
+import { triggerOrderConfirmedNotifications } from "@/lib/inngest/functions/order-confirmed";
 
 /**
  * Enriched cart item with tax rate information
@@ -286,6 +287,7 @@ export async function placeCodOrder(
 
     // 9. Emit order confirmed notification (best-effort — never fail the action)
     try {
+      await triggerOrderConfirmedNotifications(userId, order.id);
       await inngest.send({
         name: "notification/order.confirmed",
         data: { userId, orderId: order.id },

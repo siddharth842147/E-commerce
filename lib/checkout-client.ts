@@ -154,6 +154,114 @@ export async function initiateRazorpayCheckout(
     keyId: string;
   };
 
+  const isMockTest =
+    !keyId ||
+    keyId === "rzp_test_mock" ||
+    keyId.startsWith("rzp_test_placeholder") ||
+    razorpayOrderId.startsWith("order_test_");
+
+  if (isMockTest) {
+    return new Promise<CheckoutClientResult>((resolve) => {
+      const modalId = "kartiva-rzp-test-modal";
+      const existing = document.getElementById(modalId);
+      if (existing) existing.remove();
+
+      const modalEl = document.createElement("div");
+      modalEl.id = modalId;
+      modalEl.className =
+        "fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4";
+      modalEl.innerHTML = `
+        <div class="w-full max-w-md rounded-2xl bg-background border border-border p-6 shadow-2xl space-y-5 animate-in fade-in zoom-in-95 duration-200">
+          <div class="flex items-center justify-between border-b border-border pb-4">
+            <div class="flex items-center gap-2">
+              <span class="flex size-7 items-center justify-center rounded-lg bg-blue-600 font-black text-white text-xs">R</span>
+              <span class="font-bold text-foreground text-base tracking-tight">Razorpay</span>
+              <span class="rounded bg-blue-500/10 px-2 py-0.5 text-xs font-semibold text-blue-600 dark:text-blue-400">TEST MODE</span>
+            </div>
+            <span class="text-xs text-muted-foreground font-mono">${currency}</span>
+          </div>
+          <div class="rounded-xl bg-muted/50 p-4 space-y-2 border border-border/50">
+            <div class="flex justify-between items-center">
+              <span class="text-xs text-muted-foreground">Order ID</span>
+              <span class="text-xs font-mono font-medium">${orderId.slice(0, 8).toUpperCase()}</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-xs text-muted-foreground">Total Payable</span>
+              <span class="text-lg font-bold text-foreground">₹${(amount / 100).toFixed(2)}</span>
+            </div>
+          </div>
+          <p class="text-xs text-muted-foreground leading-relaxed">
+            Razorpay Sandbox test mode simulation. Click below to authorize simulated test payment or cancel.
+          </p>
+          <div class="flex flex-col gap-2 pt-2">
+            <button
+              id="simulate-rzp-success"
+              type="button"
+              class="w-full rounded-xl bg-blue-600 py-3 text-sm font-semibold text-white shadow hover:bg-blue-700 transition-colors"
+            >
+              Simulate Successful Payment (Test Mode)
+            </button>
+            <button
+              id="simulate-rzp-cancel"
+              type="button"
+              class="w-full rounded-xl border border-border py-2.5 text-xs font-medium text-muted-foreground hover:bg-muted transition-colors"
+            >
+              Cancel Payment
+            </button>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(modalEl);
+
+      const successBtn = document.getElementById("simulate-rzp-success");
+      const cancelBtn = document.getElementById("simulate-rzp-cancel");
+
+      const cleanup = () => {
+        modalEl.remove();
+      };
+
+      cancelBtn?.addEventListener("click", () => {
+        cleanup();
+        resolve({ success: false, error: "Payment cancelled by user" });
+      });
+
+      successBtn?.addEventListener("click", async () => {
+        if (successBtn) {
+          successBtn.setAttribute("disabled", "true");
+          successBtn.textContent = "Verifying test payment…";
+        }
+        try {
+          const fakePaymentId = `pay_test_${Math.random().toString(36).substring(2, 11)}`;
+          const fakeSignature = `test_sig_${Math.random().toString(36).substring(2, 11)}`;
+          const verifyResponse = await fetch("/api/payments/verify", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              razorpay_order_id: razorpayOrderId,
+              razorpay_payment_id: fakePaymentId,
+              razorpay_signature: fakeSignature,
+              orderId,
+            }),
+          });
+          const verifyRes = await verifyResponse.json();
+          cleanup();
+          if (verifyRes.success) {
+            resolve({ success: true, orderId });
+          } else {
+            resolve({
+              success: false,
+              error: verifyRes.error ?? "Payment verification failed",
+            });
+          }
+        } catch {
+          cleanup();
+          resolve({ success: false, error: "Could not verify payment" });
+        }
+      });
+    });
+  }
+
   // 2. Load the Razorpay checkout script
   try {
     await loadRazorpayScript();

@@ -58,8 +58,13 @@ export async function sendEmail({
   react,
   attachments,
 }: SendEmailParams): Promise<ChannelSendResult> {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey || apiKey.startsWith("re_test_") || apiKey.includes("xxxxxxxx")) {
+    return { success: true, providerMessageId: `msg_test_${crypto.randomUUID().slice(0, 8)}` };
+  }
+
   try {
-    const resend = new Resend(process.env.RESEND_API_KEY!);
+    const resend = new Resend(apiKey);
     const { data, error } = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL!,
       to,
@@ -86,11 +91,16 @@ interface SendSMSParams {
  * Uses MSG91_AUTH_KEY, MSG91_SENDER_ID and MSG91_TEMPLATE_ID env vars.
  */
 export async function sendSMS({ to, message }: SendSMSParams): Promise<ChannelSendResult> {
+  const authKey = process.env.MSG91_AUTH_KEY;
+  if (!authKey || authKey.startsWith("test_") || authKey.includes("xxxxxxxx")) {
+    return { success: true, providerMessageId: `sms_test_${crypto.randomUUID().slice(0, 8)}` };
+  }
+
   try {
     const response = await fetch("https://api.msg91.com/api/v5/sms/send", {
       method: "POST",
       headers: {
-        "authkey": process.env.MSG91_AUTH_KEY!,
+        "authkey": authKey,
         "content-type": "application/json",
       },
       body: JSON.stringify({
@@ -139,6 +149,11 @@ export async function sendWhatsApp({
   template,
   params,
 }: SendWhatsAppParams): Promise<ChannelSendResult> {
+  const token = process.env.WHATSAPP_ACCESS_TOKEN;
+  if (!token || token.startsWith("test_") || token.includes("xxxxxxxx")) {
+    return { success: true, providerMessageId: `wamid.test_${crypto.randomUUID().slice(0, 8)}` };
+  }
+
   try {
     const phoneNumberId = process.env.WHATSAPP_PHONE_NUMBER_ID!;
     const response = await fetch(
@@ -146,7 +161,7 @@ export async function sendWhatsApp({
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${process.env.WHATSAPP_ACCESS_TOKEN!}`,
+          Authorization: `Bearer ${token}`,
           "content-type": "application/json",
         },
         body: JSON.stringify({

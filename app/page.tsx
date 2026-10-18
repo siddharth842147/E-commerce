@@ -6,10 +6,22 @@ import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/shared/ProductCard";
 import { ProductGridSkeleton } from "@/components/shared/skeletons/ProductGridSkeleton";
 import { Skeleton } from "@/components/ui/skeleton";
+import type { Metadata } from "next";
 import { getCategories } from "@/actions/categories";
 import { getProducts } from "@/actions/products";
 import type { Category } from "@/types/db";
 import type { ProductWithVariants } from "@/services/product.service";
+
+export const metadata: Metadata = {
+  title: "Kartiva — Premium Shopping Destination",
+  description: "Explore top-rated electronics, fashion, lifestyle products, and home essentials with best price guarantees.",
+  openGraph: {
+    title: "Kartiva — Premium Shopping Destination",
+    description: "Explore top-rated electronics, fashion, lifestyle products, and home essentials with best price guarantees.",
+    url: "/",
+    images: [{ url: "/og-home.jpg", width: 1200, height: 630, alt: "Kartiva Store" }],
+  },
+};
 
 // ─── Category Card ────────────────────────────────────────────────────────────
 

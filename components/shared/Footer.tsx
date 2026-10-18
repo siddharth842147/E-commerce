@@ -7,7 +7,7 @@ export function Footer() {
   return (
     <footer className="mt-auto border-t bg-background">
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div>
             <Link href="/" className="text-lg font-bold tracking-tight">
@@ -34,7 +34,39 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/account/orders" className="transition-colors hover:text-foreground">
-                  Orders
+                  My Orders
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="transition-colors hover:text-foreground">
+                  Contact Support
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Policies & Legal */}
+          <div>
+            <h3 className="text-sm font-semibold">Policies &amp; Legal</h3>
+            <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+              <li>
+                <Link href="/privacy" className="transition-colors hover:text-foreground">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className="transition-colors hover:text-foreground">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link href="/refund-policy" className="transition-colors hover:text-foreground">
+                  Cancellation &amp; Refund
+                </Link>
+              </li>
+              <li>
+                <Link href="/shipping-policy" className="transition-colors hover:text-foreground">
+                  Shipping &amp; Delivery
                 </Link>
               </li>
             </ul>

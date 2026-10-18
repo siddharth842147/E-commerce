@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { INDIAN_STATES } from "@/lib/actions/addresses";
+import { INDIAN_STATES } from "@/lib/constants/india";
 import type { Address } from "@/types/db";
 
 const LABELS = ["Home", "Work", "Other"] as const;
@@ -118,7 +118,7 @@ export function AddressForm({ defaultValues, onSubmit, loading = false }: Addres
               <SelectValue placeholder="Select state" />
             </SelectTrigger>
             <SelectContent>
-              {INDIAN_STATES.map((s) => (
+              {INDIAN_STATES.map((s: string) => (
                 <SelectItem key={s} value={s}>{s}</SelectItem>
               ))}
             </SelectContent>

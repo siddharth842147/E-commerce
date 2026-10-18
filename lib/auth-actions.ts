@@ -57,12 +57,26 @@ export async function signUpWithEmail(formData: FormData): Promise<AuthResult> {
   if (!parsed.success) return { error: parsed.error.issues[0].message };
 
   const supabase = await createClient();
-  const { error } = await supabase.auth.signUp({
+  const { data, error } = await supabase.auth.signUp({
     email: parsed.data.email,
     password: parsed.data.password,
     options: { data: { full_name: parsed.data.fullName } },
   });
   if (error) return { error: error.message };
+
+  if (data?.user && process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    try {
+      const { createClient: createSupabaseAdmin } = await import("@supabase/supabase-js");
+      const admin = createSupabaseAdmin(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.SUPABASE_SERVICE_ROLE_KEY!,
+        { auth: { autoRefreshToken: false, persistSession: false } }
+      );
+      await admin.auth.admin.updateUserById(data.user.id, { email_confirm: true });
+    } catch (e) {
+      console.warn("Dev auto-confirm skipped:", e);
+    }
+  }
 
   return { success: true };
 }

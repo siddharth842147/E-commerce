@@ -11,6 +11,7 @@ import type {
   orderItems,
   payments,
   notificationsLog,
+  reviews,
 } from "@/db/schema";
 
 export type Profile = InferSelectModel<typeof profiles>;
@@ -45,3 +46,6 @@ export type NewPayment = InferInsertModel<typeof payments>;
 
 export type NotificationLog = InferSelectModel<typeof notificationsLog>;
 export type NewNotificationLog = InferInsertModel<typeof notificationsLog>;
+
+export type Review = InferSelectModel<typeof reviews>;
+export type NewReview = InferInsertModel<typeof reviews>;

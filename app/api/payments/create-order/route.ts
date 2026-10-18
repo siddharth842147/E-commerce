@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { db } from "@/db";
-import { orders, orderItems, payments } from "@/db/schema";
+import { orders, orderItems, payments, profiles } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { ok, err } from "@/lib/api-response";
 import { getUser } from "@/lib/auth";
@@ -81,6 +81,12 @@ export async function POST(request: NextRequest) {
     let userId: string;
     if (user) {
       userId = user.id;
+      if (data.phone) {
+        await db
+          .update(profiles)
+          .set({ phone: data.phone, updatedAt: new Date() })
+          .where(eq(profiles.id, userId));
+      }
     } else {
       if (!data.email) {
         return NextResponse.json(
@@ -180,7 +186,7 @@ export async function POST(request: NextRequest) {
         razorpayOrderId: rzp.id,
         amount: rzp.amount, // paise
         currency: rzp.currency,
-        keyId: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+        keyId: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || process.env.RAZORPAY_KEY_ID || "rzp_test_mock",
       }),
       { status: 200 }
     );

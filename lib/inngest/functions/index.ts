@@ -25,6 +25,7 @@ export { orderShippedFunction } from "./order-shipped";
 export { orderDeliveredFunction } from "./order-delivered";
 export { orderCancelledFunction } from "./order-cancelled";
 export { refundProcessedFunction } from "./refund-processed";
+export { abandonedCartFunction } from "./abandoned-cart";
 
 import { welcomeFunction } from "./welcome";
 import { otpFunction } from "./otp";
@@ -33,6 +34,7 @@ import { orderShippedFunction } from "./order-shipped";
 import { orderDeliveredFunction } from "./order-delivered";
 import { orderCancelledFunction } from "./order-cancelled";
 import { refundProcessedFunction } from "./refund-processed";
+import { abandonedCartFunction } from "./abandoned-cart";
 
 /** Array of all functions to register with the Inngest serve handler. */
 export const functions = [
@@ -43,4 +45,6 @@ export const functions = [
   orderDeliveredFunction,
   orderCancelledFunction,
   refundProcessedFunction,
+  abandonedCartFunction,
 ];
+

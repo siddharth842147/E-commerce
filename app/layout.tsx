@@ -20,11 +20,56 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: siteConfig.name,
+    default: `${siteConfig.name} — Modern Online Shopping`,
     template: `%s | ${siteConfig.name}`,
   },
-  description: siteConfig.description,
+  description: "Shop curated electronics, apparel, home essentials, books, and fitness gear with express pan-India delivery.",
   metadataBase: new URL(siteConfig.url),
+  keywords: [
+    "e-commerce",
+    "online shopping India",
+    "electronics",
+    "fashion",
+    "home and kitchen",
+    "fitness gear",
+    "Kartiva",
+  ],
+  authors: [{ name: "Kartiva Retail" }],
+  creator: "Kartiva",
+  publisher: "Kartiva",
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: `${siteConfig.name} — Quality Products, Delivered to Your Door`,
+    description: "Shop curated electronics, apparel, home essentials, books, and fitness gear with express pan-India delivery.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: siteConfig.name,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: "Shop curated electronics, apparel, home essentials, books, and fitness gear with express pan-India delivery.",
+    creator: "@kartiva",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 /**

@@ -10,3 +10,4 @@ export * from "./order_items";
 export * from "./payments";
 export * from "./notifications_log";
 export * from "./user_coupon_usage";
+export * from "./reviews";
