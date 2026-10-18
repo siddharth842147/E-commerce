@@ -128,7 +128,43 @@ export async function sendPhoneOtp(formData: FormData): Promise<AuthResult> {
 
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithOtp({ phone: parsed.data.phone });
-  if (error) return { error: error.message };
+  if (error) {
+    if (
+      error.message?.toLowerCase().includes("unsupported phone provider") ||
+      (error as any).code === "phone_provider_disabled"
+    ) {
+      // Check if there is an existing account linked to this phone
+      const rawPhone = parsed.data.phone.replace(/\D/g, "");
+      if (process.env.SUPABASE_SERVICE_ROLE_KEY) {
+        try {
+          const { createClient: createSupabaseAdmin } = await import("@supabase/supabase-js");
+          const admin = createSupabaseAdmin(
+            process.env.NEXT_PUBLIC_SUPABASE_URL!,
+            process.env.SUPABASE_SERVICE_ROLE_KEY!,
+            { auth: { autoRefreshToken: false, persistSession: false } }
+          );
+          const { data: matched } = await admin
+            .from("profiles")
+            .select("email, full_name, phone")
+            .or(`phone.eq.${parsed.data.phone},phone.ilike.%${rawPhone.slice(-10)}%`)
+            .limit(1);
+
+          if (matched && matched.length > 0 && matched[0].email) {
+            return {
+              error: `SMS provider is not configured in Supabase. We found your account (${matched[0].email})! Please switch to the Email tab to sign in with your password.`,
+            };
+          }
+        } catch {
+          // Fall through to standard message
+        }
+      }
+
+      return {
+        error: "Phone OTP login requires an SMS provider (Twilio / MessageBird) configured in Supabase. Please switch to the Email tab to sign in with your email and password.",
+      };
+    }
+    return { error: error.message };
+  }
 
   return { success: true };
 }

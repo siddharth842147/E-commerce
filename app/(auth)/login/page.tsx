@@ -11,6 +11,8 @@ import { discardGuestCartOnLogin } from "@/actions/cart";
 
 export default function LoginPage() {
   // Email/password tab state
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState<string | null>(null);
   const [emailPending, startEmailTransition] = useTransition();
 
@@ -19,6 +21,12 @@ export default function LoginPage() {
   const [otpSent, setOtpSent] = useState(false);
   const [phoneError, setPhoneError] = useState<string | null>(null);
   const [phonePending, startPhoneTransition] = useTransition();
+
+  function fillAdmin() {
+    setEmail("admin@kartiva.dev");
+    setPassword("Admin@kartiva123");
+    setEmailError(null);
+  }
 
   function handleEmailSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -88,13 +96,24 @@ export default function LoginPage() {
         <TabsContent value="email" className="mt-4">
           <form onSubmit={handleEmailSubmit} className="space-y-4">
             <div className="space-y-1.5">
-              <Label htmlFor="email">Email</Label>
+              <div className="flex items-center justify-between">
+                <Label htmlFor="email">Email</Label>
+                <button
+                  type="button"
+                  onClick={fillAdmin}
+                  className="text-xs text-primary font-medium hover:underline focus:outline-none"
+                >
+                  Fill Admin Credentials
+                </button>
+              </div>
               <Input
                 id="email"
                 name="email"
                 type="email"
                 placeholder="you@example.com"
                 autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
                 disabled={emailPending}
               />
@@ -109,6 +128,8 @@ export default function LoginPage() {
                 placeholder="••••••••"
                 autoComplete="current-password"
                 minLength={8}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
                 disabled={emailPending}
               />
@@ -122,6 +143,17 @@ export default function LoginPage() {
               {emailPending ? "Signing in…" : "Sign in"}
             </Button>
 
+            <div className="rounded-lg bg-surface-container-low p-3 text-xs text-on-surface-variant flex items-start gap-2">
+              <span className="material-symbols-outlined text-[16px] text-primary shrink-0 mt-0.5">
+                shield_person
+              </span>
+              <div>
+                <p className="font-semibold text-on-surface">Admin Credentials (Pre-configured):</p>
+                <p className="mt-0.5">Email: <code className="bg-surface-container px-1 py-0.5 rounded font-mono">admin@kartiva.dev</code></p>
+                <p className="mt-0.5">Password: <code className="bg-surface-container px-1 py-0.5 rounded font-mono">Admin@kartiva123</code></p>
+              </div>
+            </div>
+
             <p className="text-center text-xs text-muted-foreground">
               <Link href="/reset" className="underline underline-offset-4 hover:text-foreground">
                 Forgot password?
@@ -132,6 +164,15 @@ export default function LoginPage() {
 
         {/* Phone OTP tab */}
         <TabsContent value="phone" className="mt-4">
+          <div className="rounded-lg bg-amber-500/10 border border-amber-500/20 p-3 text-xs text-amber-800 dark:text-amber-300 mb-4 flex items-start gap-2">
+            <span className="material-symbols-outlined text-[18px] text-amber-600 shrink-0 mt-0.5">
+              info
+            </span>
+            <p>
+              Phone SMS requires an active SMS gateway (Twilio / MessageBird) configured in your Supabase project. For instant sign-in, please switch to the <strong>Email</strong> tab.
+            </p>
+          </div>
+
           {!otpSent ? (
             <form onSubmit={handleSendOtp} className="space-y-4">
               <div className="space-y-1.5">
