@@ -45,7 +45,7 @@ export async function signInWithEmail(formData: FormData): Promise<AuthResult> {
   const { error } = await supabase.auth.signInWithPassword(parsed.data);
   if (error) return { error: error.message };
 
-  redirect("/account");
+  redirect("/account/profile");
 }
 
 export async function signUpWithEmail(formData: FormData): Promise<AuthResult> {
@@ -101,7 +101,7 @@ export async function signUpWithEmail(formData: FormData): Promise<AuthResult> {
         return { success: true };
       }
 
-      redirect("/account");
+      redirect("/account/profile");
     } catch (e: any) {
       if (e?.digest?.startsWith?.("NEXT_REDIRECT")) {
         throw e;
