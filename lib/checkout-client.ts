@@ -117,14 +117,22 @@ export async function initiateRazorpayCheckout(
   // 1. Create the Razorpay order on the server
   let createRes;
   try {
+    const cleanPhone = (options.phone || options.shippingAddress.phone || "").replace(/\D/g, "").replace(/^91(?=\d{10}$)/, "").replace(/^0(?=\d{10}$)/, "");
+    const cleanAddressPhone = (options.shippingAddress.phone || cleanPhone).replace(/\D/g, "").replace(/^91(?=\d{10}$)/, "").replace(/^0(?=\d{10}$)/, "");
+    const cleanEmail = options.email?.trim() || undefined;
+    const cleanCoupon = options.couponCode?.trim() || undefined;
+
     const response = await fetch("/api/payments/create-order", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        shippingAddress: options.shippingAddress,
-        email: options.email,
-        phone: options.phone,
-        couponCode: options.couponCode,
+        shippingAddress: {
+          ...options.shippingAddress,
+          phone: cleanAddressPhone,
+        },
+        email: cleanEmail,
+        phone: cleanPhone || undefined,
+        couponCode: cleanCoupon,
         items: options.items,
       }),
     });
@@ -345,5 +353,19 @@ export async function placeCodOrderAction(input: {
   couponCode?: string;
   items?: { variantId: string; quantity: number }[];
 }): Promise<ApiResponse<{ orderId: string }>> {
-  return placeCodOrder(input);
+  const cleanPhone = (input.phone || input.shippingAddress.phone || "").replace(/\D/g, "").replace(/^91(?=\d{10}$)/, "").replace(/^0(?=\d{10}$)/, "");
+  const cleanAddressPhone = (input.shippingAddress.phone || cleanPhone).replace(/\D/g, "").replace(/^91(?=\d{10}$)/, "").replace(/^0(?=\d{10}$)/, "");
+  const cleanEmail = input.email?.trim() || undefined;
+  const cleanCoupon = input.couponCode?.trim() || undefined;
+
+  return placeCodOrder({
+    ...input,
+    shippingAddress: {
+      ...input.shippingAddress,
+      phone: cleanAddressPhone,
+    },
+    email: cleanEmail,
+    phone: cleanPhone || undefined,
+    couponCode: cleanCoupon,
+  });
 }

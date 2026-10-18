@@ -149,7 +149,10 @@ export async function placeCodOrder(
       string,
       string[]
     >;
-    return err("Invalid input", fieldErrors);
+    const errorDetails = Object.entries(fieldErrors)
+      .map(([field, msgs]) => `${field}: ${msgs?.join(", ")}`)
+      .join("; ");
+    return err(errorDetails || "Invalid input", fieldErrors);
   }
   const data = parsed.data;
 

@@ -10,6 +10,21 @@ import { z } from "zod";
  */
 
 /**
+ * Normalizes Indian phone numbers by stripping country prefixes (+91, 91, 0)
+ * and non-digit characters while preserving raw 10-digit numbers or invalid inputs.
+ */
+export function normalizeIndianPhone(val: string): string {
+  const digits = val.replace(/\D/g, "");
+  if (digits.length === 12 && digits.startsWith("91")) {
+    return digits.slice(2);
+  }
+  if (digits.length === 11 && digits.startsWith("0")) {
+    return digits.slice(1);
+  }
+  return digits;
+}
+
+/**
  * Shipping address validation schema
  * Requirement 12.3: Order creation requires shipping address with recipient name, 
  * phone, address fields, city, state, and postal code
@@ -22,9 +37,14 @@ export const shippingAddressSchema = z.object({
   
   phone: z
     .string()
-    .regex(
-      /^[6-9]\d{9}$/,
-      "Phone number must be a valid Indian mobile number (10 digits starting with 6-9)"
+    .transform(normalizeIndianPhone)
+    .pipe(
+      z
+        .string()
+        .regex(
+          /^[6-9]\d{9}$/,
+          "Phone number must be a valid Indian mobile number (10 digits starting with 6-9)"
+        )
     ),
   
   addressLine1: z
@@ -63,16 +83,23 @@ export const checkoutSchema = z.object({
   
   email: z
     .string()
-    .email("Invalid email address")
-    .optional(),
+    .nullish()
+    .transform((val) => (!val || !val.trim() ? undefined : val.trim()))
+    .pipe(z.string().email("Invalid email address").optional()),
   
   phone: z
     .string()
-    .regex(
-      /^[6-9]\d{9}$/,
-      "Phone number must be a valid Indian mobile number (10 digits starting with 6-9)"
-    )
-    .optional(),
+    .nullish()
+    .transform((val) => (!val || !val.trim() ? undefined : normalizeIndianPhone(val)))
+    .pipe(
+      z
+        .string()
+        .regex(
+          /^[6-9]\d{9}$/,
+          "Phone number must be a valid Indian mobile number (10 digits starting with 6-9)"
+        )
+        .optional()
+    ),
   
   couponCode: z
     .string()

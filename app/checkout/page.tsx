@@ -83,21 +83,32 @@ function AddressStep({ address, email, phone, onNext }: AddressStepProps) {
     const fd = new FormData(e.currentTarget);
 
     const recipientName = (fd.get("recipientName") as string).trim();
-    const phone = (fd.get("phone") as string).trim();
+    const rawPhone = (fd.get("phone") as string).trim();
+    // Normalize Indian phone: strip +91, 91, or leading 0 if 11/12 digits
+    const digitsOnly = rawPhone.replace(/\D/g, "");
+    let phone = digitsOnly;
+    if (digitsOnly.length === 12 && digitsOnly.startsWith("91")) {
+      phone = digitsOnly.slice(2);
+    } else if (digitsOnly.length === 11 && digitsOnly.startsWith("0")) {
+      phone = digitsOnly.slice(1);
+    }
+
     const addressLine1 = (fd.get("addressLine1") as string).trim();
     const addressLine2 = (fd.get("addressLine2") as string).trim() || undefined;
     const city = (fd.get("city") as string).trim();
     const postalCode = (fd.get("postalCode") as string).trim();
-    const email = (fd.get("email") as string).trim();
+    const rawEmail = (fd.get("email") as string).trim();
+    const email = rawEmail || undefined;
 
     if (!recipientName) return setError("Recipient name is required");
-    if (!phone || !/^\+?[0-9]{10,13}$/.test(phone)) return setError("Valid phone number is required");
+    if (!/^[6-9]\d{9}$/.test(phone)) return setError("Please enter a valid 10-digit Indian mobile number (starting with 6-9)");
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return setError("Please enter a valid email address");
     if (!addressLine1) return setError("Address line 1 is required");
     if (!city) return setError("City is required");
     if (!state) return setError("State is required");
-    if (!/^\d{6}$/.test(postalCode)) return setError("Postal code must be 6 digits");
+    if (!/^\d{6}$/.test(postalCode)) return setError("Postal code must be exactly 6 digits");
 
-    onNext({ recipientName, phone, addressLine1, addressLine2, city, state, postalCode }, email, phone);
+    onNext({ recipientName, phone, addressLine1, addressLine2, city, state, postalCode }, email ?? "", phone);
   }
 
   return (
@@ -279,13 +290,20 @@ function PaymentStep({ shippingAddress, email, phone, couponCode, onBack }: Paym
 
   function handleRazorpay() {
     startRzp(async () => {
+      const cleanPhone = (phone || shippingAddress.phone || "").replace(/\D/g, "").replace(/^91(?=\d{10}$)/, "").replace(/^0(?=\d{10}$)/, "");
+      const cleanEmail = email?.trim() ? email.trim() : undefined;
+      const cleanAddressPhone = (shippingAddress.phone || cleanPhone).replace(/\D/g, "").replace(/^91(?=\d{10}$)/, "").replace(/^0(?=\d{10}$)/, "");
+
       const result = await initiateRazorpayCheckout({
-        shippingAddress,
-        email,
-        phone,
-        couponCode,
+        shippingAddress: {
+          ...shippingAddress,
+          phone: cleanAddressPhone,
+        },
+        email: cleanEmail,
+        phone: cleanPhone,
+        couponCode: couponCode?.trim() || undefined,
         name: "Kartiva",
-        prefill: { name: shippingAddress.recipientName, email, contact: phone },
+        prefill: { name: shippingAddress.recipientName, email: cleanEmail, contact: cleanPhone },
       });
 
       if (result.success && result.orderId) {
@@ -298,11 +316,18 @@ function PaymentStep({ shippingAddress, email, phone, couponCode, onBack }: Paym
 
   function handleCod() {
     startCod(async () => {
+      const cleanPhone = (phone || shippingAddress.phone || "").replace(/\D/g, "").replace(/^91(?=\d{10}$)/, "").replace(/^0(?=\d{10}$)/, "");
+      const cleanEmail = email?.trim() ? email.trim() : undefined;
+      const cleanAddressPhone = (shippingAddress.phone || cleanPhone).replace(/\D/g, "").replace(/^91(?=\d{10}$)/, "").replace(/^0(?=\d{10}$)/, "");
+
       const result = await placeCodOrderAction({
-        shippingAddress,
-        email,
-        phone,
-        couponCode,
+        shippingAddress: {
+          ...shippingAddress,
+          phone: cleanAddressPhone,
+        },
+        email: cleanEmail,
+        phone: cleanPhone,
+        couponCode: couponCode?.trim() || undefined,
       });
 
       if (result.success) {

@@ -42,10 +42,14 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const parsed = createOrderSchema.safeParse(body);
     if (!parsed.success) {
+      const fieldErrors = parsed.error.flatten().fieldErrors as Record<string, string[]>;
+      const errorDetails = Object.entries(fieldErrors)
+        .map(([field, msgs]) => `${field}: ${msgs?.join(", ")}`)
+        .join("; ");
       return NextResponse.json(
         err(
-          "Invalid input",
-          parsed.error.flatten().fieldErrors as Record<string, string[]>
+          errorDetails || "Invalid input",
+          fieldErrors
         ),
         { status: 400 }
       );
