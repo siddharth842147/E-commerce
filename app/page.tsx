@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getCategories } from "@/actions/categories";
 import { getProducts } from "@/actions/products";
 import { Skeleton } from "@/components/ui/skeleton";
+import { FadeUp } from "@/components/shared/FadeUp";
 import {
   QuickNavChips,
   Hero,
@@ -151,31 +152,45 @@ export default function HomePage() {
       </Suspense>
 
       {/* 3. Shop by Category */}
-      <Suspense fallback={<CategoryGridSkeleton />}>
-        <DynamicCategoryGrid />
-      </Suspense>
+      <FadeUp>
+        <Suspense fallback={<CategoryGridSkeleton />}>
+          <DynamicCategoryGrid />
+        </Suspense>
+      </FadeUp>
 
       {/* 4. Flash Deals Strip with Live Timer */}
-      <Suspense fallback={<DealsSkeleton />}>
-        <DynamicFlashDeals />
-      </Suspense>
+      <FadeUp>
+        <Suspense fallback={<DealsSkeleton />}>
+          <DynamicFlashDeals />
+        </Suspense>
+      </FadeUp>
 
       {/* 5. Trending & Featured Picks with Filter Tabs */}
-      <Suspense fallback={<FeaturedSkeleton />}>
-        <DynamicFeaturedProducts />
-      </Suspense>
+      <FadeUp>
+        <Suspense fallback={<FeaturedSkeleton />}>
+          <DynamicFeaturedProducts />
+        </Suspense>
+      </FadeUp>
 
       {/* 6. Great Festive Sale Promo Banner */}
-      <PromoBanner />
+      <FadeUp>
+        <PromoBanner />
+      </FadeUp>
 
       {/* 7. Why India Shops at Kartiva */}
-      <WhyKartiva />
+      <FadeUp>
+        <WhyKartiva />
+      </FadeUp>
 
       {/* 8. Loved by Shoppers Testimonials */}
-      <Testimonials />
+      <FadeUp>
+        <Testimonials />
+      </FadeUp>
 
       {/* 9. Newsletter Signup */}
-      <Newsletter />
+      <FadeUp>
+        <Newsletter />
+      </FadeUp>
     </div>
   );
 }

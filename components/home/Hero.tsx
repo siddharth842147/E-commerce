@@ -131,7 +131,7 @@ export function Hero({ featuredProduct }: HeroProps) {
         {/* Right Column: Interactive Showcase with Floating Accents */}
         <div className="lg:col-span-5 relative flex items-center justify-center py-6">
           {/* Floating Delivery Tag (Top Right) */}
-          <div className="absolute -top-4 -right-2 md:top-2 md:right-0 z-20 bg-surface-container-lowest/95 backdrop-blur-md p-3.5 rounded-2xl shadow-xl flex items-center gap-3">
+          <div className="absolute -top-4 -right-2 md:top-2 md:right-0 z-20 bg-surface-container-lowest/95 backdrop-blur-md p-3.5 rounded-2xl shadow-xl flex items-center gap-3 animate-float-gentle">
             <div className="w-10 h-10 rounded-xl bg-secondary-fixed flex items-center justify-center text-secondary">
               <span className="material-symbols-outlined text-[24px]">electric_bolt</span>
             </div>
@@ -220,7 +220,7 @@ export function Hero({ featuredProduct }: HeroProps) {
           {/* Floating Bestseller Card (Bottom Left) */}
           <Link
             href="/shop?category=books"
-            className="absolute -bottom-6 -left-4 md:bottom-2 md:-left-6 z-20 bg-surface-container-lowest/95 backdrop-blur-md p-3.5 rounded-2xl shadow-xl flex items-center gap-3 max-w-[260px] hover:scale-105 transition-transform"
+            className="absolute -bottom-6 -left-4 md:bottom-2 md:-left-6 z-20 bg-surface-container-lowest/95 backdrop-blur-md p-3.5 rounded-2xl shadow-xl flex items-center gap-3 max-w-[260px] hover:scale-105 transition-transform animate-float-delayed"
           >
             <div className="w-12 h-14 rounded-lg bg-surface-container overflow-hidden shrink-0 relative">
               <Image

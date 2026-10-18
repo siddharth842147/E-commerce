@@ -1,52 +1,51 @@
 # Kartiva
 
-Modern e-commerce platform built with Next.js 14 (App Router), TypeScript, Tailwind CSS, and a fully-typed stack.
+Modern e-commerce platform built with Next.js (App Router), TypeScript, Tailwind CSS, and a fully-typed stack.
 
 ## Tech Stack
 
 | Layer | Technology |
 |---|---|
-| Framework | Next.js 14 (App Router) |
+| Framework | Next.js 16 (App Router + Turbopack) |
 | Language | TypeScript (strict) |
-| Styling | Tailwind CSS v3 + shadcn/ui (New York / Zinc) |
+| Styling | Tailwind CSS v4 + Stitch Design System Tokens + shadcn/ui |
+| Animations | Framer Motion + GPU-accelerated CSS Keyframes |
 | Auth & Database | Supabase (Auth + Postgres) |
-| ORM | Drizzle ORM + drizzle-kit |
+| ORM | Drizzle ORM + postgres.js |
 | Validation | Zod |
 | Payments | Razorpay |
 | Email | Resend + React Email |
 | SMS / OTP | MSG91 |
 | WhatsApp | Meta Cloud API |
-| Media | Cloudinary |
+| Media | Cloudinary + Local SVG Assets |
 | Background Jobs | Inngest |
 
-## Folder Structure
+## UI & Storefront Architecture (Stitch Design System)
 
-```
-c:\E-Commerce/
-├── app/                    # Next.js App Router pages & layouts
-│   ├── (auth)/             # Auth route group
-│   ├── (dashboard)/        # Dashboard route group
-│   └── api/                # API route handlers
-├── components/
-│   ├── ui/                 # shadcn/ui primitives
-│   ├── shared/             # Shared layout components (Navbar, Footer, etc.)
-│   ├── forms/              # Form components
-│   └── emails/             # Email template components
-├── lib/
-│   ├── supabase/           # Supabase client (browser, server, middleware)
-│   ├── utils.ts            # cn() and other utilities
-│   └── validations.ts      # Shared Zod schemas
-├── db/
-│   ├── index.ts            # Drizzle client
-│   ├── schema/             # Drizzle table definitions
-│   └── migrations/         # Generated SQL migrations
-├── services/               # External API integrations (Razorpay, MSG91, etc.)
-├── actions/                # Next.js Server Actions
-├── hooks/                  # Custom React hooks
-├── types/                  # Shared TypeScript types
-├── config/                 # App-wide config (site, navigation, etc.)
-└── emails/                 # React Email templates
-```
+The storefront has been rebuilt to be pixel-faithful to the approved Stitch design (`design/stitch_home.html`):
+
+### 1. Design Tokens & Typography
+- **Colors**: Cohesive HSL/Hex palette including `primary` (#3525cd), `primary-container` (#4f46e5), `secondary` (#ae3115), `secondary-container` (#fd6a49), `surface` (#f9f9ff), `surface-container-low` (#f1f3ff), and `on-surface` (#141b2b).
+- **Fonts**: Loaded via `next/font/google`:
+  - `Inter` (Body and labels)
+  - `Plus Jakarta Sans` (Headlines, hero titles, price typography)
+- **Icons**: `Material Symbols Outlined` with local woff2 asset (`/fonts/material-symbols-outlined.woff2`) for zero-layout-shift and instant first-paint icon rendering.
+- **Configurable Copy**: Centralized in [siteConfig.ts](file:///c:/E-Commerce/lib/siteConfig.ts) to prevent hardcoded marketing claims, with dynamic year support.
+
+### 2. Homepage Components (`components/home/`)
+- [AnnouncementBar](file:///c:/E-Commerce/components/layout/AnnouncementBar.tsx): Top festive promo strip with coupon code and free shipping note.
+- [NavbarClient](file:///c:/E-Commerce/components/layout/NavbarClient.tsx): Sticky glassmorphism header with live search (⌘K shortcut), wishlist badge, real cart badge, user account menu, and mobile responsive drawer.
+- [QuickNavChips](file:///c:/E-Commerce/components/home/QuickNavChips.tsx): Category & deal chips with delivery location indicator.
+- [Hero](file:///c:/E-Commerce/components/home/Hero.tsx): Split layout with dynamic featured product from Supabase, trust badges, floating delivery badge, and floating bestseller card with gentle looping animations.
+- [CategoryGrid](file:///c:/E-Commerce/components/home/CategoryGrid.tsx) & [CategoryCard](file:///c:/E-Commerce/components/home/CategoryCard.tsx): 5-column responsive gradient cards linking to `/shop?category=<slug>` with rich 3D vector illustrations.
+- [FlashDeals](file:///c:/E-Commerce/components/home/FlashDeals.tsx): Live ticking countdown timer to midnight, limited stock indicator, percentage claimed bars, and instant "Grab Deal" cart actions.
+- [FeaturedProducts](file:///c:/E-Commerce/components/home/FeaturedProducts.tsx): Interactive tab switching (All, Bestsellers, New Drops, Top Rated), wishlist toggle, star ratings, and real cart additions with toast notifications.
+- [PromoBanner](file:///c:/E-Commerce/components/home/PromoBanner.tsx): Festive promo card with one-click copy coupon micro-interaction (`FESTIVE15`).
+- [WhyKartiva](file:///c:/E-Commerce/components/home/WhyKartiva.tsx): Value propositions (Swift Delivery, 100% Genuine, 7-Day Returns, Dedicated Support).
+- [Testimonials](file:///c:/E-Commerce/components/home/Testimonials.tsx): Customer ratings, review quotes, and verified buyer badges.
+- [Newsletter](file:///c:/E-Commerce/components/home/Newsletter.tsx): Discount voucher subscription form with interactive submission state.
+- [Footer](file:///c:/E-Commerce/components/layout/Footer.tsx): Multi-column footer with category links, customer support links, quick subscribe, copyright year, and payment rail badges (UPI, RuPay, VISA, Mastercard, NetBanking).
+- [FadeUp](file:///c:/E-Commerce/components/shared/FadeUp.tsx): Scroll-triggered reveal animations via Framer Motion with `prefers-reduced-motion` compliance.
 
 ## Environment Setup
 
@@ -58,24 +57,12 @@ c:\E-Commerce/
 ## Development
 
 ```bash
-npm run dev        # Start dev server (http://localhost:3000)
+npm run dev        # Start dev server
+npm run test       # Run Vitest test suite
 npm run build      # Production build
-npm run lint       # ESLint
-npx drizzle-kit generate   # Generate migrations from schema
-npx drizzle-kit migrate    # Run migrations
 npx drizzle-kit studio     # Open Drizzle Studio
-```
-
-## Seeding
-
-```bash
-npm run db:seed    # Insert 5 categories, 20 products+variants, 1 admin user
 ```
 
 Admin credentials (local dev only):
 - Email: `admin@kartiva.dev`
 - Password: `Admin@kartiva123`
-
-## Status
-
-🚧 Project scaffolded — no features implemented yet.
