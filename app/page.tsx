@@ -1,19 +1,16 @@
 import { Suspense } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { ShoppingBagIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { ProductCard } from "@/components/shared/ProductCard";
-import { ProductGridSkeleton } from "@/components/shared/skeletons/ProductGridSkeleton";
-import { Skeleton } from "@/components/ui/skeleton";
 import type { Metadata } from "next";
 import { getCategories } from "@/actions/categories";
 import { getProducts } from "@/actions/products";
-import type { Category } from "@/types/db";
-import type { ProductWithVariants } from "@/services/product.service";
-import { QuickNavChips } from "@/components/home/QuickNavChips";
-import { Hero } from "@/components/home/Hero";
-import { CategoryGrid } from "@/components/home/CategoryGrid";
+import { Skeleton } from "@/components/ui/skeleton";
+import {
+  QuickNavChips,
+  Hero,
+  CategoryGrid,
+  FlashDeals,
+  FeaturedProducts,
+  PromoBanner,
+} from "@/components/home";
 
 export const metadata: Metadata = {
   title: "Kartiva — Premium Shopping Destination",
@@ -26,40 +23,7 @@ export const metadata: Metadata = {
   },
 };
 
-// ─── Product Grid ─────────────────────────────────────────────────────────────
-
-function ProductGrid({ products }: { products: ProductWithVariants[] }) {
-  if (products.length === 0) return null;
-  return (
-    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-      {products.map((p) => (
-        <ProductCard
-          key={p.id}
-          id={p.id}
-          name={p.name}
-          slug={p.slug}
-          price={p.price}
-          compareAtPrice={p.compareAtPrice}
-          images={p.images as string[]}
-          variants={p.variants}
-          category={p.category}
-        />
-      ))}
-    </div>
-  );
-}
-
-async function NewArrivalsSection() {
-  const res = await getProducts({ sortBy: "newest", limit: 8, isActive: true });
-  const items = res.success ? res.data.items : [];
-  return <ProductGrid products={items} />;
-}
-
-async function BestSellersSection() {
-  const res = await getProducts({ isFeatured: true, limit: 8, isActive: true });
-  const items = res.success ? res.data.items : [];
-  return <ProductGrid products={items} />;
-}
+// ─── Skeletons ───────────────────────────────────────────────────────────────
 
 function HeroSkeleton() {
   return (
@@ -92,6 +56,37 @@ function CategoryGridSkeleton() {
   );
 }
 
+function DealsSkeleton() {
+  return (
+    <div className="max-w-[1360px] mx-auto px-margin py-space-xl">
+      <Skeleton className="h-24 w-full rounded-3xl mb-space-lg" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-md">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <Skeleton key={i} className="h-[380px] rounded-3xl" />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function FeaturedSkeleton() {
+  return (
+    <div className="max-w-[1360px] mx-auto px-margin py-space-xl">
+      <div className="flex justify-between items-end mb-space-lg">
+        <Skeleton className="h-12 w-64 rounded-xl" />
+        <Skeleton className="h-10 w-80 rounded-2xl" />
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+        {Array.from({ length: 8 }).map((_, i) => (
+          <Skeleton key={i} className="h-[420px] rounded-3xl" />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── Dynamic Server Components ──────────────────────────────────────────────
+
 async function DynamicHero() {
   const res = await getProducts({ isFeatured: true, limit: 1, isActive: true });
   const topProduct = res.success && res.data.items.length > 0 ? res.data.items[0] : null;
@@ -117,6 +112,28 @@ async function DynamicCategoryGrid() {
   return <CategoryGrid categories={categories} />;
 }
 
+async function DynamicFlashDeals() {
+  const res = await getProducts({ limit: 5, isActive: true });
+  const products = res.success ? res.data.items : [];
+  return <FlashDeals products={products} />;
+}
+
+async function DynamicFeaturedProducts() {
+  const [allRes, bestsellersRes, dropsRes] = await Promise.all([
+    getProducts({ limit: 8, isActive: true }),
+    getProducts({ isFeatured: true, limit: 8, isActive: true }),
+    getProducts({ sortBy: "newest", limit: 8, isActive: true }),
+  ]);
+
+  return (
+    <FeaturedProducts
+      allProducts={allRes.success ? allRes.data.items : []}
+      bestsellers={bestsellersRes.success ? bestsellersRes.data.items : []}
+      newDrops={dropsRes.success ? dropsRes.data.items : []}
+    />
+  );
+}
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function HomePage() {
@@ -135,45 +152,18 @@ export default function HomePage() {
         <DynamicCategoryGrid />
       </Suspense>
 
-      {/* New Arrivals Section */}
-      <section className="mx-auto w-full max-w-[1360px] px-margin py-space-xl">
-        <div className="mb-6 flex items-center justify-between">
-          <div>
-            <span className="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">
-              Fresh Drops
-            </span>
-            <h2 className="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight mt-1">
-              New Arrivals
-            </h2>
-          </div>
-          <Button variant="link" size="sm" render={<Link href="/shop?sort=newest" />}>
-            View all
-          </Button>
-        </div>
-        <Suspense fallback={<ProductGridSkeleton count={8} />}>
-          <NewArrivalsSection />
-        </Suspense>
-      </section>
+      {/* 4. Flash Deals Strip with Live Timer */}
+      <Suspense fallback={<DealsSkeleton />}>
+        <DynamicFlashDeals />
+      </Suspense>
 
-      {/* Best Sellers Section */}
-      <section className="mx-auto w-full max-w-[1360px] px-margin pb-space-xl">
-        <div className="mb-6 flex items-center justify-between">
-          <div>
-            <span className="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">
-              Customer Favorites
-            </span>
-            <h2 className="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight mt-1">
-              Best Sellers
-            </h2>
-          </div>
-          <Button variant="link" size="sm" render={<Link href="/shop?featured=true" />}>
-            View all
-          </Button>
-        </div>
-        <Suspense fallback={<ProductGridSkeleton count={8} />}>
-          <BestSellersSection />
-        </Suspense>
-      </section>
+      {/* 5. Trending & Featured Picks with Filter Tabs */}
+      <Suspense fallback={<FeaturedSkeleton />}>
+        <DynamicFeaturedProducts />
+      </Suspense>
+
+      {/* 6. Great Festive Sale Promo Banner */}
+      <PromoBanner />
     </div>
   );
 }

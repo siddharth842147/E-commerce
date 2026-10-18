@@ -1,5 +1,8 @@
-export { QuickNavChips } from "./QuickNavChips";
-export { Hero } from "./Hero";
-export { CategoryGrid } from "./CategoryGrid";
-export { CategoryCard } from "./CategoryCard";
-export { AddToCartHeroButton } from "./AddToCartHeroButton";
+export * from "./QuickNavChips";
+export * from "./Hero";
+export * from "./CategoryCard";
+export * from "./CategoryGrid";
+export * from "./AddToCartHeroButton";
+export * from "./FlashDeals";
+export * from "./FeaturedProducts";
+export * from "./PromoBanner";
