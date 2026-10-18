@@ -142,7 +142,7 @@ async function DynamicFeaturedProducts() {
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col w-full pt-28">
+    <div className="flex flex-col w-full">
       {/* 1. Quick Navigation Chips */}
       <QuickNavChips />
 
