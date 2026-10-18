@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, usePathname } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { siteConfig } from "@/lib/siteConfig";
 import { createClient } from "@/lib/supabase/client";
@@ -19,7 +19,9 @@ const DynamicThreeScene = dynamic(
 
 export function IntroSplash() {
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const forceIntro = searchParams.get("intro") === "1";
+  const disableIntro = searchParams.get("intro") === "0";
   const reducedMotion = useReducedMotion() ?? false;
 
   const [visible, setVisible] = useState<boolean>(false);
@@ -39,27 +41,41 @@ export function IntroSplash() {
     }
   }, []);
 
-  // Check sessionStorage and forceIntro
+  // Check sessionStorage / localStorage and enforce homepage route
   useEffect(() => {
-    if (!siteConfig.intro.enabled) {
+    // Explicitly disabled via URL ?intro=0 or siteConfig
+    if (disableIntro || !siteConfig.intro.enabled) {
+      setHasCheckedSession(true);
+      return;
+    }
+
+    // Only ever show on the root homepage unless ?intro=1 is explicitly passed
+    const isHomePage = pathname === "/";
+    if (!isHomePage && !forceIntro) {
       setHasCheckedSession(true);
       return;
     }
 
     try {
-      const alreadySeen = window.sessionStorage.getItem("kartiva_intro_seen");
+      const sessionSeen = window.sessionStorage.getItem("kartiva_intro_seen");
+      const localSeen = window.localStorage.getItem("kartiva_intro_seen");
+      const alreadySeen = Boolean(sessionSeen || localSeen);
+
       if (forceIntro || (!alreadySeen && siteConfig.intro.showOncePerSession)) {
+        // Mark as seen immediately so reloading or navigating never restarts it
+        window.sessionStorage.setItem("kartiva_intro_seen", "1");
+        window.localStorage.setItem("kartiva_intro_seen", "1");
         setVisible(true);
       }
     } catch {
-      // If sessionStorage is disabled/blocked in private mode, still respect forceIntro
+      // If storage is disabled in private mode, still respect forceIntro
       if (forceIntro) {
         setVisible(true);
       }
     } finally {
       setHasCheckedSession(true);
     }
-  }, [forceIntro]);
+  }, [pathname, forceIntro, disableIntro]);
 
   // Fetch logged in user's first name if available
   useEffect(() => {
@@ -105,8 +121,9 @@ export function IntroSplash() {
     setVisible(false);
     try {
       window.sessionStorage.setItem("kartiva_intro_seen", "1");
+      window.localStorage.setItem("kartiva_intro_seen", "1");
     } catch {
-      // Ignore sessionStorage errors
+      // Ignore storage errors
     }
   }, []);
 
