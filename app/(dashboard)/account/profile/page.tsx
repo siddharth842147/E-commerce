@@ -1,6 +1,8 @@
 import { getProfile } from "@/actions/account";
 import { ProfileForm } from "./ProfileForm";
 
+export const instant = false;
+
 export default async function ProfilePage() {
   const profile = await getProfile();
 

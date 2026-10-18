@@ -5,6 +5,8 @@ import { OrderStatusBadge } from "@/components/shared/OrderStatusBadge";
 import { Separator } from "@/components/ui/separator";
 import { ArrowLeft, Download, MapPin, Package } from "lucide-react";
 
+export const instant = false;
+
 // Status timeline — shows progress through the order lifecycle
 const STATUS_STEPS = ["pending", "confirmed", "shipped", "delivered"] as const;
 

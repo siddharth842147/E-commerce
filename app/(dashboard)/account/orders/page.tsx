@@ -3,6 +3,8 @@ import { getOrders } from "@/actions/account";
 import { OrderStatusBadge } from "@/components/shared/OrderStatusBadge";
 import { ShoppingBag, ChevronRight } from "lucide-react";
 
+export const instant = false;
+
 export default async function OrdersPage() {
   const result = await getOrders();
   const orders = result.success ? result.data : [];

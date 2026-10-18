@@ -5,6 +5,8 @@ export const metadata = {
   title: "Coupon Management | Kartiva Admin",
 };
 
+export const instant = false;
+
 export default async function AdminCouponsPage() {
   const res = await getAdminCoupons();
   const coupons = res.success ? res.data : [];

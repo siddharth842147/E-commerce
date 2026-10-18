@@ -22,6 +22,8 @@ export const metadata = {
   title: "Admin Console | Kartiva",
 };
 
+export const instant = false;
+
 export default async function AdminDashboardPage() {
   const res = await getAdminDashboardData();
   const data = res.success

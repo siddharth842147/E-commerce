@@ -1,6 +1,8 @@
 import { getAddresses } from "@/lib/actions/addresses";
 import { AddressesClient } from "./AddressesClient";
 
+export const instant = false;
+
 export default async function AddressesPage() {
   const result = await getAddresses();
   const addresses = result.success ? result.data : [];

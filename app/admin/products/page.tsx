@@ -6,6 +6,8 @@ export const metadata = {
   title: "Products Management | Kartiva Admin",
 };
 
+export const instant = false;
+
 export default async function AdminProductsPage() {
   const [productsRes, categoriesRes] = await Promise.all([
     getProducts({ limit: 100 }),

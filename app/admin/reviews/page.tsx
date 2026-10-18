@@ -5,6 +5,8 @@ export const metadata = {
   title: "Review Moderation | Kartiva Admin",
 };
 
+export const instant = false;
+
 export default async function AdminReviewsPage() {
   const res = await getAdminReviews({ limit: 100 });
   const reviews = res.success ? res.data.reviews : [];

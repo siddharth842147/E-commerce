@@ -5,6 +5,8 @@ export const metadata = {
   title: "Categories Management | Kartiva Admin",
 };
 
+export const instant = false;
+
 export default async function AdminCategoriesPage() {
   const res = await getCategories();
   const categories = res.success ? res.data : [];

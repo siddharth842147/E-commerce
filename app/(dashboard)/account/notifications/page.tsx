@@ -1,6 +1,8 @@
 import { getNotificationPreferences } from "@/actions/notifications";
 import { NotificationsClient } from "./NotificationsClient";
 
+export const instant = false;
+
 export default async function NotificationsPage() {
   const result = await getNotificationPreferences();
   const prefs = result.success
