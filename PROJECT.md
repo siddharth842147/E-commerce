@@ -49,7 +49,8 @@ The storefront has been rebuilt to be pixel-faithful to the approved Stitch desi
 
 ### 3. Intro Splash Screen (`components/intro/`)
 - [IntroSplash](file:///c:/E-Commerce/components/intro/IntroSplash.tsx): Full-screen brand intro overlay mounted in root layout. Features time-of-day greeting (with user first name when authenticated), typewriter animation, skip controls (button, click anywhere, Escape key), scroll locking, and smooth exit transition revealing the storefront.
-- [CSS3DFallback](file:///c:/E-Commerce/components/intro/CSS3DFallback.tsx): Lightweight, performant 3D CSS fallback with rotating Kartiva logo shield and orbiting category chips (Books, Fashion, Audio, Home, Fitness).
+- [ThreeIntroScene](file:///c:/E-Commerce/components/intro/ThreeIntroScene.tsx): WebGL 3D scene built with `@react-three/fiber` and `@react-three/drei`. Features a low-poly rotating metallic shopping bag with golden "K" emblem, arched handle, and 5 orbiting product meshes (Book, Shirt with mesh distort, Audio torus, Home ceramic vase, Sports dodecahedron). Dynamic import (`ssr: false`), capped `devicePixelRatio: [1, 1.5]`, automatic WebGL capability detection, and memory cleanup on unmount.
+- [CSS3DFallback](file:///c:/E-Commerce/components/intro/CSS3DFallback.tsx): Lightweight, performant 3D CSS fallback with rotating Kartiva logo shield and orbiting category chips (Books, Fashion, Audio, Home, Fitness) when WebGL is unavailable or `prefers-reduced-motion` is active.
 - [IntroTyping](file:///c:/E-Commerce/components/intro/IntroTyping.tsx): Configurable character-by-character typing animation with blinking cursor and screen-reader accessibility.
 - Controlled via `sessionStorage` (`kartiva_intro_seen`) with `?intro=1` URL query override for instant testing.
 

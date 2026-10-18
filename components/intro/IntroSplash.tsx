@@ -1,12 +1,21 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { siteConfig } from "@/lib/siteConfig";
 import { createClient } from "@/lib/supabase/client";
 import { CSS3DFallback } from "./CSS3DFallback";
 import { IntroTyping } from "./IntroTyping";
+
+const DynamicThreeScene = dynamic(
+  () => import("./ThreeIntroScene"),
+  {
+    ssr: false,
+    loading: () => <CSS3DFallback />,
+  }
+);
 
 export function IntroSplash() {
   const searchParams = useSearchParams();
@@ -16,6 +25,19 @@ export function IntroSplash() {
   const [visible, setVisible] = useState<boolean>(false);
   const [userName, setUserName] = useState<string | null>(null);
   const [hasCheckedSession, setHasCheckedSession] = useState<boolean>(false);
+  const [hasWebGL, setHasWebGL] = useState<boolean>(true);
+
+  // Detect WebGL capability on client
+  useEffect(() => {
+    try {
+      const canvas = document.createElement("canvas");
+      const gl =
+        canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+      setHasWebGL(Boolean(gl));
+    } catch {
+      setHasWebGL(false);
+    }
+  }, []);
 
   // Check sessionStorage and forceIntro
   useEffect(() => {
@@ -145,13 +167,17 @@ export function IntroSplash() {
 
           {/* Center Content: 3D Animation + Typewriter Text */}
           <div className="relative z-10 flex flex-col items-center justify-center my-auto gap-6 sm:gap-8 max-w-3xl">
-            {/* 3D Model / CSS 3D Fallback */}
+            {/* 3D WebGL Scene with CSS 3D Fallback */}
             <motion.div
               initial={reducedMotion ? false : { scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <CSS3DFallback reducedMotion={reducedMotion} />
+              {hasWebGL && !reducedMotion ? (
+                <DynamicThreeScene />
+              ) : (
+                <CSS3DFallback reducedMotion={reducedMotion} />
+              )}
             </motion.div>
 
             {/* Typewriter Text */}
