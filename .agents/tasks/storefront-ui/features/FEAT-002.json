@@ -2,7 +2,7 @@
   "id": "FEAT-002",
   "type": "feat",
   "description": "Build the core storefront pages: Home, Product list (Shop), Product detail, Cart, and Checkout. These are the primary customer-facing pages. Independent of FEAT-003 (auth pages) and FEAT-004 (dashboard pages) but depends on FEAT-001 shared components existing.",
-  "status": "pending",
+  "status": "completed",
   "steps": [
     "Step 1 — Create app/page.tsx (Home). Server component. Calls: getCategories() from actions/categories.ts for categories row; getProducts({isFeatured:true, limit:8, isActive:true}) for best sellers; getProducts({sortBy:'newest', limit:8, isActive:true}) for new arrivals. Sections: Hero (full-width banner with Kartiva tagline and CTA button linking to /shop), Categories row (horizontal scroll of category cards with image + name, links to /shop?category=slug), New Arrivals grid (ProductCard x8 using Suspense+skeleton), Best Sellers grid (ProductCard x8). All data fetched server-side. Wrap grids in Suspense with ProductGridSkeleton fallback.",
 
@@ -34,5 +34,5 @@
     "Run `npm run build` from c:\\E-Commerce — zero TypeScript errors"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All 9 steps implemented. Build passes (npm run build exit code 0). Key findings: (1) `export const dynamic` is incompatible with `nextConfig.cacheComponents:true` — used Suspense-wrapping for cookie-dependent components (cart) and `export const instant = false` for searchParams-dependent pages (shop, checkout/success). (2) All async data fetching in server components is wrapped in Suspense boundaries to comply with cacheComponents partial prerendering. (3) Added actions/coupon.ts for coupon preview server action used by checkout page. (4) Created ProductGallery client component and ProductDetailClient for variant/add-to-cart interactivity. (5) next.config.ts updated with Supabase remotePatterns for product images."
 }
