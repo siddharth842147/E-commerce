@@ -10,6 +10,9 @@ import {
   FlashDeals,
   FeaturedProducts,
   PromoBanner,
+  WhyKartiva,
+  Testimonials,
+  Newsletter,
 } from "@/components/home";
 
 export const metadata: Metadata = {
@@ -164,6 +167,15 @@ export default function HomePage() {
 
       {/* 6. Great Festive Sale Promo Banner */}
       <PromoBanner />
+
+      {/* 7. Why India Shops at Kartiva */}
+      <WhyKartiva />
+
+      {/* 8. Loved by Shoppers Testimonials */}
+      <Testimonials />
+
+      {/* 9. Newsletter Signup */}
+      <Newsletter />
     </div>
   );
 }

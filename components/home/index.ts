@@ -6,3 +6,6 @@ export * from "./AddToCartHeroButton";
 export * from "./FlashDeals";
 export * from "./FeaturedProducts";
 export * from "./PromoBanner";
+export * from "./WhyKartiva";
+export * from "./Testimonials";
+export * from "./Newsletter";

@@ -5,7 +5,7 @@ export const siteConfig = {
     "Discover curated collections of Books, Fashion, cutting-edge Electronics, Home aesthetics, and Fitness gear tailored for modern India.",
   url: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3005",
   ogImage: "/og-image.jpg",
-  currentYear: new Date().getFullYear(),
+  currentYear: 2026,
   announcement: {
     enabled: true,
     badgeText: "Festive Special",
@@ -74,7 +74,7 @@ export const siteConfig = {
     },
   ],
   footer: {
-    copyrightNotice: `© ${new Date().getFullYear()} Kartiva Retail India. All rights reserved.`,
+    copyrightNotice: "© 2026 Kartiva Retail India. All rights reserved.",
     paymentBadges: ["UPI", "RuPay", "VISA", "Mastercard", "NetBanking"],
   },
 };
