@@ -1,0 +1,3 @@
+ALTER TABLE "profiles" ADD COLUMN "email_notifications" boolean DEFAULT true NOT NULL;--> statement-breakpoint
+ALTER TABLE "profiles" ADD COLUMN "sms_notifications" boolean DEFAULT true NOT NULL;--> statement-breakpoint
+ALTER TABLE "profiles" ADD COLUMN "whatsapp_notifications" boolean DEFAULT true NOT NULL;

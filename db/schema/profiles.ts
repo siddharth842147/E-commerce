@@ -1,4 +1,4 @@
-import { pgTable, uuid, text, timestamp, pgEnum } from "drizzle-orm/pg-core";
+import { pgTable, uuid, text, timestamp, pgEnum, boolean } from "drizzle-orm/pg-core";
 
 export const roleEnum = pgEnum("role", ["customer", "admin"]);
 
@@ -11,4 +11,8 @@ export const profiles = pgTable("profiles", {
   role: roleEnum("role").notNull().default("customer"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
+  // Channel opt-in preferences — default to true so existing rows stay opted-in
+  emailNotifications: boolean("email_notifications").notNull().default(true),
+  smsNotifications: boolean("sms_notifications").notNull().default(true),
+  whatsappNotifications: boolean("whatsapp_notifications").notNull().default(true),
 });

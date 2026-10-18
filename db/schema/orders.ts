@@ -3,7 +3,7 @@ import { profiles } from "./profiles";
 import { coupons } from "./coupons";
 
 export const orderStatusEnum = pgEnum("order_status", [
-  "pending", "confirmed", "processing", "shipped", "delivered", "cancelled", "refunded"
+  "pending", "confirmed", "processing", "shipped", "delivered", "cancelled", "refunded", "returned"
 ]);
 
 export const orders = pgTable("orders", {

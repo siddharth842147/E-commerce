@@ -1,0 +1,7 @@
+{
+  "task_id": "task-storefront-ui",
+  "task_description": "Build the complete Kartiva storefront UI: shared components (Navbar, Footer, CartProvider, skeletons), core pages (Home, Shop, Product detail, Cart, Checkout), auth pages (Login, Register, Reset, Update-password), account/dashboard pages (Profile, Addresses, Orders, Order detail, Notifications), and the invoice download API route. Premium-minimal brand, mobile-first, Tailwind v4, @base-ui/react components, server actions as data layer.",
+  "status": "pending",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003", "FEAT-004"],
+  "blocked_reason": null
+}

@@ -1,0 +1,35 @@
+{
+  "id": "FEAT-004",
+  "type": "feat",
+  "description": "Build account/dashboard pages under app/(dashboard)/account/: Profile, Addresses, Orders list, Order detail (with tracking timeline and invoice download), and Notifications preferences. Also create the invoice download API route at app/api/orders/[orderId]/invoice/route.ts. Depends on FEAT-001 for layout and shared components, and FEAT-001's addresses server action (lib/actions/addresses.ts).",
+  "status": "pending",
+  "steps": [
+    "Step 1 — Create app/(dashboard)/account/profile/page.tsx. Server component. Calls requireAuth() + getUserProfile() from lib/auth.ts. Shows: avatar (initial-based placeholder or avatarUrl), full name, email, phone. Edit form (client sub-component, 'use client') that updates profile via a new server action. Add server action updateProfile(formData) in a new file lib/actions/profile.ts that updates profiles table (fullName, phone) using requireAuth(). Show success toast via sonner.",
+
+    "Step 2 — Create app/(dashboard)/account/addresses/page.tsx. Server component (outer). Calls requireAuth() to get userId, then getAddresses(). Renders list of address cards using Address type from types/db.ts. Each card shows label, full address, isDefault badge. Actions: Edit (opens AddressForm in a Dialog), Delete button, Set as Default button. All CRUD uses the lib/actions/addresses.ts server actions created in FEAT-001 Step 3. 'Add New Address' button opens a Dialog with AddressForm. Use Dialog from @/components/ui/dialog.",
+
+    "Step 3 — Create app/(dashboard)/account/orders/page.tsx. Server component. Calls requireAuth() to get userId. Queries orders for user from db directly (no dedicated action exists — inline db query or create getMyOrders() in lib/actions/orders.ts). Orders joined with payments for method. Shows table/list: order date, order ID (truncated), status badge (OrderStatusBadge), total amount, payment method, link to detail page. Pagination (simple prev/next). Empty state if no orders. Create lib/actions/orders.ts with: getMyOrders(userId, page, limit), getMyOrderDetail(userId, orderId).",
+
+    "Step 4 — Create app/(dashboard)/account/orders/[orderId]/page.tsx. Server component. Params is Promise<{orderId:string}> — await it. Calls getMyOrderDetail(userId, orderId) from lib/actions/orders.ts. Returns order + orderItems + payment. If not found or userId mismatch, notFound(). Layout: order header (id, date, status), delivery address card, order items table (product name, variant, qty, price, total), order totals (subtotal, discount, tax, shipping, total), payment info (method, razorpay payment id if applicable). Status timeline: horizontal stepper showing order status flow (placed→confirmed→processing→shipped→delivered), with current status highlighted. Cancelled/refunded/returned shown as terminal states. Invoice download button: links to /api/orders/[orderId]/invoice (GET route, opens PDF in new tab).",
+
+    "Step 5 — Create app/(dashboard)/account/notifications/page.tsx. Server component (outer). Calls getNotificationPreferences() from actions/notifications.ts. Renders three toggle rows: Email, SMS, WhatsApp — each with current on/off state. Updates via updateNotificationPreferences server action from actions/notifications.ts. Make toggle rows a 'use client' component that calls the action on toggle change. Show loading state during update.",
+
+    "Step 6 — Create app/api/orders/[orderId]/invoice/route.ts. GET handler. 1) Get user via getUser() from lib/auth.ts — if null, return 401. 2) Params is Promise in Next.js 16 — await props.params to get orderId. 3) Fetch order+items+payment from db, verify order.userId === user.id (authorization check). 4) Build InvoicePDFProps from order data: invoiceNumber=orderId, orderDate=order.createdAt, customerName from profile, shippingAddress from order.shippingAddress (JSONB cast to ShippingAddress), items from orderItems. 5) Call generateInvoicePDF(props) from lib/invoice/generate-invoice.ts. 6) Return new Response(buffer, {headers: {'Content-Type':'application/pdf', 'Content-Disposition': 'attachment; filename=invoice-[orderId].pdf'}}). Import generateInvoicePDF, InvoicePDFProps from lib/invoice/generate-invoice.ts.",
+
+    "Step 7 — Create lib/actions/orders.ts with getMyOrders(userId, page, limit) and getMyOrderDetail(userId, orderId). getMyOrders: query orders where userId matches, join with payments for method, order by createdAt desc, paginate. getMyOrderDetail: query order by id AND userId (security — never fetch by id alone), join orderItems. Returns ApiResponse<...> pattern."
+  ],
+  "acceptance_criteria": [
+    "app/(dashboard)/account/profile/page.tsx exists and shows user profile",
+    "app/(dashboard)/account/addresses/page.tsx lists/adds/edits/deletes addresses",
+    "app/(dashboard)/account/orders/page.tsx lists user orders with status badges",
+    "app/(dashboard)/account/orders/[orderId]/page.tsx shows order detail with timeline and invoice link",
+    "app/(dashboard)/account/notifications/page.tsx shows and updates channel preferences",
+    "app/api/orders/[orderId]/invoice/route.ts returns a PDF for authenticated order owner",
+    "`npm run build` completes without TypeScript errors"
+  ],
+  "verification": [
+    "Run `npm run build` from c:\\E-Commerce — zero TypeScript errors"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

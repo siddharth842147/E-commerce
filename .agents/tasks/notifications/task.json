@@ -1,0 +1,8 @@
+{
+  "task_id": "task-notifications-service",
+  "task_description": "Build a complete notification service for the Kartiva e-commerce Next.js 16 app using Inngest for background jobs with retries. Channels: email via Resend (React Email templates), SMS via MSG91, WhatsApp via Meta Cloud API. Events: welcome, OTP, order confirmed (with PDF invoice), shipped, delivered, cancelled, refund. Trigger them on order status change and log each attempt in notifications_log. Generate a PDF invoice and attach it to the confirmation email. Respect each user's channel opt-in preferences.",
+  "status": "pending",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003"],
+  "blocked_reason": null,
+  "feature_dependency_note": "Strictly sequential. FEAT-002 (Inngest functions) imports the service, email templates, and PDF generator from FEAT-001. FEAT-003 (order-lifecycle triggers + preference actions) imports the Inngest client from FEAT-002 and the opt-in columns from FEAT-001. Each FEAT leaves the codebase in a buildable state; the convergence loop after all three runs the full build + tests to verify cross-FEAT integration (the triggers in FEAT-003 are where seams surface)."
+}

@@ -1,0 +1,27 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Build all auth pages inside app/(auth)/: Login, Register, Reset password, Update password. These pages are independent of FEAT-002 (core pages) but depend on FEAT-001 for the (auth) layout. They use existing server actions from lib/auth-actions.ts.",
+  "status": "pending",
+  "steps": [
+    "Step 1 — Create app/(auth)/login/page.tsx. 'use client' component. Two tabs (email/password + phone OTP) using Tabs from @/components/ui/tabs. Email tab: email + password inputs, submit calls signInWithEmail(formData) server action via form action. Phone tab: phone input, send OTP calls sendPhoneOtp, then shows OTP input, verify calls verifyPhoneOtp. Show error messages from AuthResult.error. Show loading state on submit. Link to /register and /reset. After redirect (from signInWithEmail) user goes to /account. ALSO: on successful login, call discardGuestCartOnLogin() server action to merge/clear guest cart per the established pattern in actions/cart.ts.",
+
+    "Step 2 — Create app/(auth)/register/page.tsx. 'use client' component. Form: fullName, email, password (min 8 chars). Submit calls signUpWithEmail(formData). On success (AuthResult.success=true), show 'Check your email to confirm your account' message. Show error on failure. Link back to /login.",
+
+    "Step 3 — Create app/(auth)/reset/page.tsx. 'use client' component. Form: email input. Submit calls resetPassword(formData). On success show 'Password reset link sent to your email'. Show error on failure. Link back to /login.",
+
+    "Step 4 — Create app/(auth)/update-password/page.tsx. 'use client' component. Form: new password (min 8), confirm password (client-side match check). Submit calls updatePassword(formData). On success redirects to /account (handled server-side by updatePassword). Show error on failure. This page is only reached via the Supabase reset email link."
+  ],
+  "acceptance_criteria": [
+    "app/(auth)/login/page.tsx exists with email and phone OTP tabs",
+    "app/(auth)/register/page.tsx exists with full registration form",
+    "app/(auth)/reset/page.tsx exists with password reset form",
+    "app/(auth)/update-password/page.tsx exists",
+    "`npm run build` completes without TypeScript errors"
+  ],
+  "verification": [
+    "Run `npm run build` from c:\\E-Commerce — zero TypeScript errors"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

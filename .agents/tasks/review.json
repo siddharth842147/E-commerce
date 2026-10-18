@@ -1,0 +1,26 @@
+{
+  "verdict": "CHANGES_REQUESTED",
+  "findings": [
+    {
+      "id": 1,
+      "label": "Orphaned storage blobs on update",
+      "description": "updateProduct drops image URLs from the DB column without deleting the corresponding Supabase Storage blobs. Read the current images array before the update and call deleteProductImage for each URL absent from keepImages."
+    },
+    {
+      "id": 2,
+      "label": "Silent category filter drop",
+      "description": "In queryProducts, an unknown categorySlug causes the filter to be silently skipped and all products are returned. Return an empty paginated result or an error when the slug resolves to no category."
+    },
+    {
+      "id": 3,
+      "label": "Unguarded DELETE route handlers",
+      "description": "DELETE /api/products/:id and DELETE /api/categories/:id have no try/catch. An unexpected throw produces a 500 with no JSON body. Wrap them to match the PUT handlers."
+    },
+    {
+      "id": 4,
+      "label": "removeProductImage path trust",
+      "description": "The function accepts imagePath from the caller with no server-side derivation. A mismatched path leaves the blob in storage while the URL is removed from the DB. Derive the path server-side from the stored public URL."
+    }
+  ],
+  "reviewDoc": "c:\\E-Commerce\\.agents\\tasks\\review.md"
+}

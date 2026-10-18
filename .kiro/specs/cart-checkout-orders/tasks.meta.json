@@ -1,0 +1,1071 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1. Install required npm packages and set up environment variables": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176450169
+      },
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176469749
+      },
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792177025130
+      }
+    ],
+    "2.1 Add tax_rate column to categories schema": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176450230
+      },
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176470474
+      },
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792177024075
+      }
+    ],
+    "2.2 Create user_coupon_usage table schema": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176450288
+      },
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176471133
+      },
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792177025830
+      }
+    ],
+    "2.3 Extend orderStatusEnum to include \"returned\"": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176450341
+      },
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176471833
+      },
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792177027465
+      }
+    ],
+    "2.4 Verify and update payments table schema": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176450392
+      },
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176472617
+      },
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792177026610
+      }
+    ],
+    "2.5 Generate and apply database migration": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176450444
+      },
+      {
+        "executionId": "38ea5d8f-3f5d-47fe-8a45-1792f980cd52",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792177592819
+      },
+      {
+        "executionId": "38ea5d8f-3f5d-47fe-8a45-1792f980cd52",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792177905610
+      }
+    ],
+    "3.1 Create cart type definitions": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176450507
+      },
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792177041617
+      },
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792177453166
+      }
+    ],
+    "3.2 Create checkout type definitions": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176450582
+      },
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792177042090
+      },
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792177453341
+      }
+    ],
+    "4.1 Create checkout validation schemas": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176450635
+      },
+      {
+        "executionId": "38ea5d8f-3f5d-47fe-8a45-1792f980cd52",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792177593506
+      },
+      {
+        "executionId": "38ea5d8f-3f5d-47fe-8a45-1792f980cd52",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792177906211
+      }
+    ],
+    "4.2 Create cart operation validation schemas": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176450686
+      },
+      {
+        "executionId": "38ea5d8f-3f5d-47fe-8a45-1792f980cd52",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792177594119
+      },
+      {
+        "executionId": "38ea5d8f-3f5d-47fe-8a45-1792f980cd52",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792177907011
+      }
+    ],
+    "5.1 Create guest cart operations in CartService": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176450737
+      },
+      {
+        "executionId": "38ea5d8f-3f5d-47fe-8a45-1792f980cd52",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792177913798
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792211015312
+      }
+    ],
+    "5.2 Write property test for guest cart round-trip preservation": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176450787
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792212186307
+      }
+    ],
+    "5.3 Write property test for signature validation": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176450839
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792212186572
+      }
+    ],
+    "5.4 Create authenticated user cart operations in CartService": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176450890
+      },
+      {
+        "executionId": "38ea5d8f-3f5d-47fe-8a45-1792f980cd52",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792177914265
+      }
+    ],
+    "5.5 Write property test for user cart database round-trip preservation": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176450940
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792212187331
+      }
+    ],
+    "5.6 Implement stock validation helper in CartService": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176451043
+      },
+      {
+        "executionId": "38ea5d8f-3f5d-47fe-8a45-1792f980cd52",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792177915012
+      }
+    ],
+    "5.7 Write property test for stock validation preventing zero-stock additions": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176451098
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792212188097
+      }
+    ],
+    "5.8 Implement cart hydration helper for guest carts": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176451154
+      },
+      {
+        "executionId": "38ea5d8f-3f5d-47fe-8a45-1792f980cd52",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792177915695
+      }
+    ],
+    "6. Checkpoint - Verify cart service implementation": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176451207
+      }
+    ],
+    "7.1 Create addToCart server action": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176451263
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792212201485
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792212665021
+      }
+    ],
+    "7.2 Create updateCartItemQuantity and removeFromCart server actions": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176451319
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792212202216
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792212665837
+      }
+    ],
+    "7.3 Create getCart server action": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176451371
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792212202918
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792212666529
+      }
+    ],
+    "7.4 Create discardGuestCartOnLogin server action": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176451425
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792212716993
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792212923675
+      }
+    ],
+    "7.5 Write property test for guest cart discarded on login": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176451493
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792212691925
+      }
+    ],
+    "8.1 Create coupon validation service": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176451584
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792212717743
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792212925809
+      }
+    ],
+    "8.2 Write property test for coupon validation enforcing all constraints": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176451637
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792212952141
+      }
+    ],
+    "8.3 Write property test for per-user coupon usage preventing reuse": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176451695
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792212952947
+      }
+    ],
+    "9.1 Create stock validation for checkout": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176451750
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792212961621
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792213265332
+      }
+    ],
+    "9.2 Implement discount calculation logic": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176451806
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792212962279
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792213266071
+      }
+    ],
+    "9.3 Write property test for percentage discount calculation": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176451859
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792213276810
+      }
+    ],
+    "9.4 Write property test for fixed discount calculation": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176451915
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792213277327
+      }
+    ],
+    "9.5 Write property test for zero discount without coupon": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176451970
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792213277957
+      }
+    ],
+    "9.6 Implement tax calculation logic": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176452025
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792212962992
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792213266789
+      }
+    ],
+    "9.7 Write property test for tax calculation formula": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176452077
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792213278750
+      }
+    ],
+    "9.8 Write property test for total tax sum": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176452131
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792213279542
+      }
+    ],
+    "9.9 Implement shipping calculation logic": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176452191
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792212963651
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792213267448
+      }
+    ],
+    "9.10 Write property test for shipping cost below threshold": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176452246
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792213285535
+      }
+    ],
+    "9.11 Write property test for free shipping above threshold": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176452304
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792213286817
+      }
+    ],
+    "9.12 Implement order totals calculation": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176452361
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792212964432
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792213268303
+      }
+    ],
+    "9.13 Write property test for subtotal calculation formula": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176452463
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792213285113
+      }
+    ],
+    "9.14 Write property test for order total calculation formula": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176452516
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792213287054
+      }
+    ],
+    "9.15 Write property test for order total never negative": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176452569
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792213287601
+      }
+    ],
+    "10. Checkpoint - Verify calculation logic": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176452623
+      }
+    ],
+    "11.1 Create Razorpay order creation helper": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176452677
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792213326399
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792213495459
+      }
+    ],
+    "11.2 Implement atomic order creation with stock reservation": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176452728
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792213586422
+      }
+    ],
+    "11.3 Write property test for stock decrement atomicity": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176452782
+      }
+    ],
+    "11.4 Write property test for coupon usage tracking on confirmation": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176452843
+      }
+    ],
+    "11.5 Write property test for coupon used count increment": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176452912
+      }
+    ],
+    "11.6 Write property test for initial order status": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176452999
+      }
+    ],
+    "11.7 Write property test for initial payment status": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176453054
+      }
+    ],
+    "12.1 Create guest user profile creation helper": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176453105
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792213327259
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792213497195
+      }
+    ],
+    "12.2 Create enrichCartWithTaxRates helper": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176453158
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792213327813
+      },
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792213496332
+      }
+    ],
+    "12.3 Implement checkout server action": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176453209
+      }
+    ],
+    "12.4 Write property test for empty cart validation": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176453261
+      }
+    ],
+    "12.5 Write property test for shipping address validation": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176453312
+      }
+    ],
+    "12.6 Write property test for order items matching cart items": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176453366
+      }
+    ],
+    "12.7 Write property test for cart cleared after order creation": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176453419
+      }
+    ],
+    "12.8 Write property test for guest cart cleared after order creation": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176453477
+      }
+    ],
+    "13. Checkpoint - Verify checkout flow": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176453541
+      }
+    ],
+    "14.1 Create payment signature verification helper": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176453602
+      }
+    ],
+    "14.2 Write property test for payment signature HMAC computation": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176453674
+      }
+    ],
+    "14.3 Create verifyPayment server action": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176453776
+      }
+    ],
+    "14.4 Write property test for valid signature capturing payment": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176453836
+      }
+    ],
+    "14.5 Write property test for invalid signature failing payment": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176453894
+      }
+    ],
+    "14.6 Write property test for payment capture confirming order": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176453951
+      }
+    ],
+    "15.1 Create webhook signature verification helper": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176454011
+      }
+    ],
+    "15.2 Create webhook API route handler": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176454068
+      }
+    ],
+    "15.3 Write property test for webhook signature validation": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176454128
+      }
+    ],
+    "15.4 Write property test for captured webhook updating payment status": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176454192
+      }
+    ],
+    "15.5 Write property test for failed webhook updating payment status": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176454249
+      }
+    ],
+    "15.6 Write property test for webhook payment status synchronizing order status": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176454310
+      }
+    ],
+    "16.1 Create order query functions": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176454365
+      }
+    ],
+    "16.2 Write property test for user order query filtering by user ID": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176454421
+      }
+    ],
+    "16.3 Write property test for order query returning complete data": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176454479
+      }
+    ],
+    "16.4 Write property test for order query sorted by creation date": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176454535
+      }
+    ],
+    "16.5 Implement order status update with stock restoration": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176454590
+      }
+    ],
+    "16.6 Write property test for order cancellation restoring stock": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176454652
+      }
+    ],
+    "16.7 Write property test for order return restoring stock": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176454718
+      }
+    ],
+    "16.8 Write property test for coupon usage tracking removed on cancellation": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176454777
+      }
+    ],
+    "16.9 Write property test for coupon used count decremented on cancellation": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176454829
+      }
+    ],
+    "16.10 Write property test for order state machine transitions": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176454882
+      }
+    ],
+    "16.11 Write property test for order status update changing timestamp": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176454935
+      }
+    ],
+    "17.1 Create customer order actions": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176455040
+      }
+    ],
+    "17.2 Create admin order actions": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176455093
+      }
+    ],
+    "17.3 Write property test for admin seeing all orders": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176455145
+      }
+    ],
+    "17.4 Write property test for admin order filtering by status": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176455200
+      }
+    ],
+    "17.5 Write property test for admin order filtering by date range": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176455252
+      }
+    ],
+    "17.6 Write property test for admin order query returning complete data": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176455307
+      }
+    ],
+    "17.7 Create admin order status update action": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176455360
+      }
+    ],
+    "18. Checkpoint - Verify order management": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176455412
+      }
+    ],
+    "19.1 Integrate cart actions with frontend": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176455464
+      }
+    ],
+    "19.2 Integrate checkout flow with frontend": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176455516
+      }
+    ],
+    "19.3 Integrate payment verification with frontend": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176455571
+      }
+    ],
+    "19.4 Integrate order management with frontend": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176455624
+      }
+    ],
+    "19.5 Write integration tests for checkout flow": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176455677
+      }
+    ],
+    "19.6 Write integration tests for payment flow": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176455729
+      }
+    ],
+    "20. Final checkpoint - Complete feature verification": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792176455781
+      }
+    ],
+    "3. Create TypeScript type definitions": [
+      {
+        "executionId": "f7f00105-a99d-4416-92e2-e98ab2a57659",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792177453477
+      }
+    ],
+    "2. Create database schema modifications": [
+      {
+        "executionId": "38ea5d8f-3f5d-47fe-8a45-1792f980cd52",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792177905698
+      }
+    ],
+    "4. Implement validation schemas": [
+      {
+        "executionId": "38ea5d8f-3f5d-47fe-8a45-1792f980cd52",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792177907071
+      }
+    ],
+    "7. Implement Cart Actions": [
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792212923775
+      }
+    ],
+    "8. Implement Coupon Validation Helpers": [
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792212953058
+      }
+    ],
+    "9. Implement Checkout Service": [
+      {
+        "executionId": "c1264a1b-c6a4-4ad1-85f3-7002d523926e",
+        "chatSessionId": "sess_7c720d55-0ad7-4a4a-8e52-af1652faca28",
+        "timestamp": 1792213287654
+      }
+    ]
+  }
+}

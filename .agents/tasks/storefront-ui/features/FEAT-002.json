@@ -1,0 +1,38 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Build the core storefront pages: Home, Product list (Shop), Product detail, Cart, and Checkout. These are the primary customer-facing pages. Independent of FEAT-003 (auth pages) and FEAT-004 (dashboard pages) but depends on FEAT-001 shared components existing.",
+  "status": "pending",
+  "steps": [
+    "Step 1 — Create app/page.tsx (Home). Server component. Calls: getCategories() from actions/categories.ts for categories row; getProducts({isFeatured:true, limit:8, isActive:true}) for best sellers; getProducts({sortBy:'newest', limit:8, isActive:true}) for new arrivals. Sections: Hero (full-width banner with Kartiva tagline and CTA button linking to /shop), Categories row (horizontal scroll of category cards with image + name, links to /shop?category=slug), New Arrivals grid (ProductCard x8 using Suspense+skeleton), Best Sellers grid (ProductCard x8). All data fetched server-side. Wrap grids in Suspense with ProductGridSkeleton fallback.",
+
+    "Step 2 — Create app/shop/page.tsx (Product list). Server component. Receives searchParams Promise (Next.js 16 — must await). Params: search, category, minPrice, maxPrice, sort, page. Calls getProducts(filters) from actions/products.ts. Layout: left sidebar (desktop) or top filter drawer (mobile) with: category select (calls getCategories()), price range inputs, sort select. Main area: search bar at top, product grid (ProductCard components), pagination (prev/next with page param in URL). Empty state via EmptyState component. Loading: Suspense around product grid.",
+
+    "Step 3 — Create app/shop/[slug]/page.tsx (Product detail). Server component. Params is Promise<{slug:string}> — await it. Calls getProductDetail(slug) from actions/products.ts. Returns ProductWithVariants (product + variants[] + category). If not found, call notFound() from 'next/navigation'. Layout: image gallery (main image + thumbnails, client component for switching), product info (name, price, compare-at, description), VariantSelector (client), QuantitySelector (client), Add to Cart button (client, calls addToCart server action), reviews section placeholder (static UI). generateMetadata export for SEO. ProductGallery must be a 'use client' component.",
+
+    "Step 4 — Create app/cart/page.tsx (Cart). Server component. Calls getCart() from actions/cart.ts. Renders CartItemRow for each item (client components). Right panel: order summary (subtotal, note about taxes and shipping calculated at checkout), checkout CTA button linking to /checkout. If cart empty, show EmptyState with link to /shop. CartItemRow handles quantity updates and removal via server actions.",
+
+    "Step 5 — Create app/checkout/page.tsx (Checkout). 'use client' component (multi-step state, Razorpay modal). Three steps: (1) Shipping Address — form using Input/Label/Select from shadcn, validates with inline state, pre-fills from URL or saved addresses; (2) Coupon — optional coupon code input (calls a client-side fetch or inline validation); (3) Payment — two options: Razorpay button (calls initiateRazorpayCheckout from lib/checkout-client.ts) and COD button (calls placeCodOrderAction from lib/checkout-client.ts). On success: router.push('/checkout/success?orderId=...') or '/account/orders'. Show order summary sidebar throughout. IMPORTANT: never trust client-side payment success — initiateRazorpayCheckout already handles server verification.",
+
+    "Step 6 — Create app/checkout/success/page.tsx. Server component. Reads orderId from searchParams (await searchParams). Shows order confirmation with orderId, link to track order at /account/orders/[orderId], link to continue shopping.",
+
+    "Step 7 — Create app/shop/loading.tsx. Returns ProductGridSkeleton.",
+
+    "Step 8 — Create app/shop/[slug]/loading.tsx. Returns a product detail skeleton (image placeholder + text lines).",
+
+    "Step 9 — Add generateMetadata to app/shop/[slug]/page.tsx: export async function generateMetadata(props). Await params, call getProductDetail(slug), return title+description+openGraph."
+  ],
+  "acceptance_criteria": [
+    "Home page (/) renders hero, categories, new arrivals, and best sellers sections",
+    "/shop renders a product grid with filter sidebar and pagination",
+    "/shop/[slug] renders product gallery, variants selector, add-to-cart for any valid product slug",
+    "/cart renders cart items or empty state",
+    "/checkout renders multi-step form with Razorpay and COD options",
+    "`npm run build` completes without TypeScript errors"
+  ],
+  "verification": [
+    "Run `npm run build` from c:\\E-Commerce — zero TypeScript errors"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

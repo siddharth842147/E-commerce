@@ -8,7 +8,7 @@ export const paymentStatusEnum = pgEnum("payment_status", [
 export const payments = pgTable("payments", {
   id: uuid("id").primaryKey().defaultRandom(),
   orderId: uuid("order_id").notNull().references(() => orders.id, { onDelete: "cascade" }),
-  razorpayOrderId: text("razorpay_order_id"),
+  razorpayOrderId: text("razorpay_order_id").notNull().unique(),
   razorpayPaymentId: text("razorpay_payment_id"),
   razorpaySignature: text("razorpay_signature"),
   amount: numeric("amount", { precision: 10, scale: 2 }).notNull(),
