@@ -1,3 +1,4 @@
+import { connection } from "next/server";
 import { getCart } from "@/actions/cart";
 import { CartProvider } from "@/components/shared/CartProvider";
 
@@ -7,6 +8,7 @@ import { CartProvider } from "@/components/shared/CartProvider";
  * keeping server actions out of client component imports.
  */
 export async function CartProviderServer({ children }: { children: React.ReactNode }) {
+  await connection();
   const res = await getCart();
   const initialItems = res.success ? res.data : [];
 

@@ -1,8 +1,10 @@
+import { connection } from "next/server";
 import Link from "next/link";
 import { getUser } from "@/lib/auth";
 import { NavbarClient } from "@/components/shared/NavbarClient";
 
 export async function Navbar() {
+  await connection();
   const user = await getUser();
 
   return (

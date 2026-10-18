@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { ShoppingCartIcon, UserIcon, MenuIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import {
   Sheet,
   SheetContent,
@@ -65,10 +66,13 @@ export function NavbarClient({ user }: NavbarClientProps) {
 
         {user ? (
           <div className="hidden items-center gap-1 md:flex">
-            <Button variant="ghost" size="sm" render={<Link href="/account/profile" />}>
+            <Link
+              href="/account/profile"
+              className={buttonVariants({ variant: "ghost", size: "sm" })}
+            >
               <UserIcon className="size-4" />
               Account
-            </Button>
+            </Link>
             <form action={signOut}>
               <Button type="submit" variant="ghost" size="sm">
                 Sign out
@@ -76,9 +80,12 @@ export function NavbarClient({ user }: NavbarClientProps) {
             </form>
           </div>
         ) : (
-          <Button variant="ghost" size="sm" className="hidden md:inline-flex" render={<Link href="/login" />}>
+          <Link
+            href="/login"
+            className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "hidden md:inline-flex")}
+          >
             Login
-          </Button>
+          </Link>
         )}
 
         {/* Mobile hamburger */}
