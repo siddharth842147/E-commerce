@@ -47,6 +47,12 @@ The storefront has been rebuilt to be pixel-faithful to the approved Stitch desi
 - [Footer](file:///c:/E-Commerce/components/layout/Footer.tsx): Multi-column footer with category links, customer support links, quick subscribe, copyright year, and payment rail badges (UPI, RuPay, VISA, Mastercard, NetBanking).
 - [FadeUp](file:///c:/E-Commerce/components/shared/FadeUp.tsx): Scroll-triggered reveal animations via Framer Motion with `prefers-reduced-motion` compliance.
 
+### 3. Intro Splash Screen (`components/intro/`)
+- [IntroSplash](file:///c:/E-Commerce/components/intro/IntroSplash.tsx): Full-screen brand intro overlay mounted in root layout. Features time-of-day greeting (with user first name when authenticated), typewriter animation, skip controls (button, click anywhere, Escape key), scroll locking, and smooth exit transition revealing the storefront.
+- [CSS3DFallback](file:///c:/E-Commerce/components/intro/CSS3DFallback.tsx): Lightweight, performant 3D CSS fallback with rotating Kartiva logo shield and orbiting category chips (Books, Fashion, Audio, Home, Fitness).
+- [IntroTyping](file:///c:/E-Commerce/components/intro/IntroTyping.tsx): Configurable character-by-character typing animation with blinking cursor and screen-reader accessibility.
+- Controlled via `sessionStorage` (`kartiva_intro_seen`) with `?intro=1` URL query override for instant testing.
+
 ## Environment Setup
 
 1. Copy `.env.example` to `.env.local`

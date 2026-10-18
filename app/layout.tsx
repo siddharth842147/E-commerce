@@ -7,6 +7,7 @@ import { Navbar } from "@/components/shared/Navbar";
 import { Footer } from "@/components/shared/Footer";
 import { CartProviderServer } from "@/components/shared/CartProviderServer";
 import { siteConfig } from "@/lib/siteConfig";
+import { IntroSplash } from "@/components/intro";
 import "./globals.css";
 
 const inter = Inter({
@@ -106,6 +107,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
          * static navbar shell is shown there so no request-time data
          * access occurs in the fallback path.
          */}
+        <Suspense fallback={null}>
+          <IntroSplash />
+        </Suspense>
         <Suspense fallback={<NavbarShell />}>
           <CartProviderServer>
             <Navbar />

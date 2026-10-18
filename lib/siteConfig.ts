@@ -6,6 +6,15 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3005",
   ogImage: "/og-image.jpg",
   currentYear: 2026,
+  intro: {
+    enabled: true,
+    showOncePerSession: true,
+    typingSpeedMs: 45,
+    holdDurationMs: 900,
+    typingSoundEnabled: false,
+    tagline: "Everything you love, delivered fast.",
+    brandName: "Kartiva",
+  },
   announcement: {
     enabled: true,
     badgeText: "Festive Special",
