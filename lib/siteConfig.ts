@@ -1,9 +1,28 @@
+function resolveAppUrl(): string {
+  if (process.env.NEXT_PUBLIC_APP_URL) {
+    return process.env.NEXT_PUBLIC_APP_URL.replace(/\/$/, "");
+  }
+  if (process.env.URL) {
+    return process.env.URL.replace(/\/$/, "");
+  }
+  if (process.env.DEPLOY_PRIME_URL) {
+    return process.env.DEPLOY_PRIME_URL.replace(/\/$/, "");
+  }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  if (process.env.NODE_ENV === "production") {
+    return "https://kartiva.com";
+  }
+  return "http://localhost:3000";
+}
+
 export const siteConfig = {
   name: "Kartiva",
   tagline: "Everything you love, delivered fast.",
   description:
     "Discover curated collections of Books, Fashion, cutting-edge Electronics, Home aesthetics, and Fitness gear tailored for modern India.",
-  url: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3005",
+  url: resolveAppUrl(),
   ogImage: "/og-image.jpg",
   currentYear: 2026,
   intro: {

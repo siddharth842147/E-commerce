@@ -51,7 +51,7 @@ export function AddToCartHeroButton({
     <button
       onClick={handleAdd}
       disabled={loading}
-      className="add-to-cart-btn px-4 py-2.5 rounded-xl bg-primary text-on-primary font-label-md text-label-md flex items-center gap-1.5 shadow-md hover:bg-primary-container transition-all active:scale-95 disabled:opacity-50"
+      className="add-to-cart-btn px-4 py-2.5 rounded-xl bg-primary text-on-primary font-label-md text-label-md flex items-center gap-1.5 shadow-md hover:bg-primary-container transition-all duration-200 active:scale-95 disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
     >
       <span className="material-symbols-outlined text-[18px]">add_shopping_cart</span>
       <span>{loading ? "Adding..." : "Add"}</span>

@@ -28,7 +28,7 @@ export function ProductGallery({ images, productName }: ProductGalleryProps) {
       <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-muted">
         <Image
           src={activeSrc}
-          alt={`${productName} — image ${activeIndex + 1}`}
+          alt={`${productName} - image ${activeIndex + 1}`}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover"

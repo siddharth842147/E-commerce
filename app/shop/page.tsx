@@ -102,7 +102,7 @@ async function FilterSidebar({ searchParams }: { searchParams: ShopSearchParams 
           <option value="newest">Newest</option>
           <option value="price_asc">Price: Low to High</option>
           <option value="price_desc">Price: High to Low</option>
-          <option value="name_asc">Name A–Z</option>
+          <option value="name_asc">Name A-Z</option>
         </select>
       </div>
 
@@ -187,13 +187,13 @@ async function ProductsGrid({ searchParams }: { searchParams: ShopSearchParams }
       <p className="text-sm text-muted-foreground">
         Showing{" "}
         <span className="font-medium text-foreground">
-          {start}–{end}
+          {start}-{end}
         </span>{" "}
         of <span className="font-medium text-foreground">{total}</span> products
       </p>
 
       {/* Grid */}
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid grid-cols-1 min-[420px]:grid-cols-2 gap-3.5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 sm:gap-4">
         {items.map((p) => (
           <ProductCard
             key={p.id}

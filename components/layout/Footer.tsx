@@ -1,19 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/lib/siteConfig";
 
 export function Footer() {
-  const [currentYear, setCurrentYear] = useState<number>(2026);
-
-  useEffect(() => {
-    setCurrentYear(new Date().getFullYear());
-  }, []);
+  const currentYear = siteConfig.currentYear;
 
   return (
     <footer className="w-full bg-surface-container-low border-t border-surface-container pt-space-xl pb-space-lg text-on-surface">
-      <div className="max-w-[1360px] mx-auto px-margin">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-margin">
         {/* Main Footer Columns */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-lg pb-space-xl border-b border-surface-container">
           {/* Brand Info (2 Columns on large screens) */}
@@ -139,14 +134,16 @@ export function Footer() {
               <input
                 type="email"
                 placeholder="Enter your email"
+                aria-label="Email address for updates"
                 className="px-4 py-2.5 rounded-xl bg-surface-container-lowest text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary/20 border border-surface-container"
               />
               <button
                 type="button"
-                className="px-4 py-2.5 rounded-xl bg-primary text-on-primary font-label-md text-label-md font-bold hover:bg-primary-container transition-all flex items-center justify-center gap-1.5 shadow-sm active:scale-95"
+                aria-label="Subscribe to updates"
+                className="px-4 py-2.5 rounded-xl bg-primary text-on-primary font-label-md text-label-md font-bold hover:bg-primary-container transition-all flex items-center justify-center gap-1.5 shadow-sm active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
               >
                 <span>Subscribe</span>
-                <span className="material-symbols-outlined text-[18px]">
+                <span className="material-symbols-outlined text-[18px]" aria-hidden="true">
                   arrow_forward
                 </span>
               </button>
@@ -161,7 +158,7 @@ export function Footer() {
           </p>
 
           {/* Payment Badges */}
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             {siteConfig.footer.paymentBadges.map((badge) => (
               <span
                 key={badge}

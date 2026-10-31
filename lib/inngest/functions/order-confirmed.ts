@@ -4,8 +4,8 @@ import { dispatchNotification } from "@/services/notification.service";
 import OrderConfirmedEmail from "@/components/emails/OrderConfirmedEmail";
 import { generateInvoicePDF } from "@/lib/invoice/generate-invoice";
 import { db } from "@/db";
-import { profiles, orders, orderItems, payments, notificationsLog } from "@/db/schema";
-import { eq, and } from "drizzle-orm";
+import { profiles, orders, orderItems, payments } from "@/db/schema";
+import { eq } from "drizzle-orm";
 import { siteConfig } from "@/config/site";
 
 /**

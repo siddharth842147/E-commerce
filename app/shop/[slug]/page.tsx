@@ -1,9 +1,8 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getProductDetail } from "@/actions/products";
 import { ProductGallery } from "@/components/shared/ProductGallery";
-import { VariantSelector } from "@/components/shared/VariantSelector";
-import { AddToCartButton } from "@/components/shared/AddToCartButton";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ProductDetailClient } from "./ProductDetailClient";
@@ -63,20 +62,20 @@ export default async function ProductDetailPage({ params }: Props) {
   return (
     <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       {/* Breadcrumb */}
-      <nav className="mb-6 flex items-center gap-2 text-sm text-muted-foreground" aria-label="Breadcrumb">
-        <a href="/" className="hover:text-foreground">Home</a>
+      <nav className="mb-6 flex flex-wrap items-center gap-1.5 sm:gap-2 text-sm text-muted-foreground" aria-label="Breadcrumb">
+        <Link href="/" className="hover:text-foreground">Home</Link>
         <span>/</span>
-        <a href="/shop" className="hover:text-foreground">Shop</a>
+        <Link href="/shop" className="hover:text-foreground">Shop</Link>
         {product.category && (
           <>
             <span>/</span>
-            <a href={`/shop?category=${product.category.slug}`} className="hover:text-foreground">
+            <Link href={`/shop?category=${product.category.slug}`} className="hover:text-foreground">
               {product.category.name}
-            </a>
+            </Link>
           </>
         )}
         <span>/</span>
-        <span className="text-foreground">{product.name}</span>
+        <span className="text-foreground truncate max-w-[150px] sm:max-w-xs">{product.name}</span>
       </nav>
 
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12">
@@ -121,7 +120,7 @@ export default async function ProductDetailPage({ params }: Props) {
 
           <Separator />
 
-          {/* Variant selector + add to cart — client for interactivity */}
+          {/* Variant selector + add to cart - client for interactivity */}
           <ProductDetailClient
             variants={product.variants}
             defaultVariantId={defaultVariant?.id ?? ""}

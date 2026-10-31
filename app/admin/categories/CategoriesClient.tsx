@@ -376,6 +376,7 @@ export function CategoriesClient({ initialCategories }: CategoriesClientProps) {
 
                 {imagePreview && (
                   <div className="relative size-20 overflow-hidden rounded-lg border bg-muted">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={imagePreview}
                       alt="Category preview"

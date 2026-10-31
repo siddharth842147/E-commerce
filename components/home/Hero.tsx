@@ -15,15 +15,18 @@ interface HeroProps {
   };
 }
 
+const DEFAULT_HERO_PRODUCT = {
+  id: "hero-featured",
+  variantId: "hero-featured-variant",
+  name: "Acoustic Elite Pro NC-90",
+  price: 3499,
+  compareAtPrice: 5999,
+  imageUrl: "/images/hero/headphones.svg",
+  categoryName: "Audio & Acoustics",
+};
+
 export function Hero({ featuredProduct }: HeroProps) {
-  const product = featuredProduct || {
-    id: "hero-featured",
-    name: "Acoustic Elite Pro NC-90",
-    price: 3499,
-    compareAtPrice: 5999,
-    imageUrl: "/images/hero/headphones.svg",
-    categoryName: "Audio & Acoustics",
-  };
+  const product = featuredProduct || DEFAULT_HERO_PRODUCT;
 
   const discountPercent = product.compareAtPrice
     ? Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100)
@@ -34,15 +37,15 @@ export function Hero({ featuredProduct }: HeroProps) {
     : 2500;
 
   return (
-    <section className="relative w-full max-w-[1360px] mx-auto px-margin py-space-xl overflow-hidden">
+    <section className="relative w-full max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-margin py-8 sm:py-space-xl overflow-x-clip">
       {/* Ambient Backdrop Aura Orbs */}
       <div className="absolute -top-16 -left-16 w-96 h-96 rounded-full bg-primary-fixed blur-3xl opacity-60 pointer-events-none" />
       <div className="absolute top-1/3 -right-20 w-[480px] h-[480px] rounded-full bg-secondary-fixed blur-3xl opacity-50 pointer-events-none" />
 
-      <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+      <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-space-lg lg:gap-space-xl items-center">
         {/* Left Column */}
-        <div className="lg:col-span-7 flex flex-col items-start gap-space-md z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-container-lowest shadow-sm">
+        <div className="lg:col-span-7 flex flex-col items-start gap-space-sm sm:gap-space-md z-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container-lowest shadow-sm">
             <span className="material-symbols-outlined text-[16px] text-secondary-container">
               auto_awesome
             </span>
@@ -51,32 +54,32 @@ export function Hero({ featuredProduct }: HeroProps) {
             </span>
           </div>
 
-          <h1 className="font-display-hero text-display-hero font-extrabold text-on-surface tracking-tight leading-none">
+          <h1 className="text-3xl min-[400px]:text-4xl md:text-5xl lg:text-display-hero font-extrabold text-on-surface tracking-tight leading-tight sm:leading-none">
             Everything you love,<br />
             <span className="bg-gradient-to-r from-primary-container via-tertiary-container to-secondary-container bg-clip-text text-transparent">
               delivered fast.
             </span>
           </h1>
 
-          <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+          <p className="font-body-md sm:font-body-lg text-body-md sm:text-body-lg text-on-surface-variant max-w-xl">
             {siteConfig.description}
           </p>
 
           {/* CTA Action Buttons */}
-          <div className="flex flex-wrap items-center gap-4 pt-2">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2 w-full sm:w-auto">
             <Link
               href="#featured"
-              className="group px-7 py-3.5 rounded-xl bg-primary-container text-on-primary font-label-md text-label-md flex items-center gap-2 shadow-lg hover:shadow-primary-container/40 transition-all hover:scale-[1.02]"
+              className="group w-full sm:w-auto px-7 py-3.5 rounded-xl bg-primary-container text-on-primary font-label-md text-label-md flex items-center justify-center gap-2 shadow-md hover:shadow-xl hover:shadow-primary-container/25 transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             >
               <span>Shop Now</span>
-              <span className="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1">
+              <span className="material-symbols-outlined text-[20px] transition-transform duration-200 group-hover:translate-x-1">
                 arrow_forward
               </span>
             </Link>
 
             <Link
               href="/shop?sort=newest"
-              className="px-7 py-3.5 rounded-xl bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm border border-border hover:bg-surface-container-low transition-all hover:scale-[1.01]"
+              className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm border border-outline-variant/60 hover:border-primary/40 hover:bg-surface-container-low transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 text-center justify-center flex items-center"
             >
               View New Arrivals
             </Link>
@@ -129,11 +132,11 @@ export function Hero({ featuredProduct }: HeroProps) {
         </div>
 
         {/* Right Column: Interactive Showcase with Floating Accents */}
-        <div className="lg:col-span-5 relative flex items-center justify-center py-6">
+        <div className="lg:col-span-5 relative flex items-center justify-center py-6 px-2 sm:px-0">
           {/* Floating Delivery Tag (Top Right) */}
-          <div className="absolute -top-4 -right-2 md:top-2 md:right-0 z-20 bg-surface-container-lowest/95 backdrop-blur-md p-3.5 rounded-2xl shadow-xl flex items-center gap-3 animate-float-gentle">
-            <div className="w-10 h-10 rounded-xl bg-secondary-fixed flex items-center justify-center text-secondary">
-              <span className="material-symbols-outlined text-[24px]">electric_bolt</span>
+          <div className="absolute top-0 right-1 sm:-top-4 sm:-right-2 md:top-2 md:right-0 z-20 bg-surface-container-lowest/95 backdrop-blur-md p-2.5 sm:p-3.5 rounded-2xl shadow-xl border border-outline-variant/50 flex items-center gap-2.5 sm:gap-3 animate-float-gentle max-w-[calc(100%-1rem)] sm:max-w-none">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-secondary-fixed flex items-center justify-center text-secondary shrink-0">
+              <span className="material-symbols-outlined text-[20px] sm:text-[24px]">electric_bolt</span>
             </div>
             <div>
               <div className="flex items-center gap-1.5">
@@ -149,8 +152,8 @@ export function Hero({ featuredProduct }: HeroProps) {
           </div>
 
           {/* Main Hero Card */}
-          <div className="relative w-full max-w-[420px] bg-surface-container-lowest rounded-3xl p-6 shadow-2xl transition-transform hover:-translate-y-1 duration-300">
-            <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-surface-container mb-5 group">
+          <div className="relative w-full max-w-[420px] bg-surface-container-lowest rounded-3xl p-5 sm:p-6 shadow-xl border border-outline-variant/40 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+            <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-surface-container mb-4 sm:mb-5 group">
               <Image
                 src={product.imageUrl || "/images/hero/headphones.svg"}
                 alt={product.name}
@@ -165,7 +168,7 @@ export function Hero({ featuredProduct }: HeroProps) {
               </span>
               <button
                 type="button"
-                className="absolute top-3 right-3 w-9 h-9 rounded-full bg-surface-container-lowest/90 backdrop-blur-md flex items-center justify-center text-on-surface hover:text-secondary shadow-md transition-colors"
+                className="absolute top-3 right-3 w-9 h-9 rounded-full bg-surface-container-lowest/90 backdrop-blur-md flex items-center justify-center text-on-surface hover:text-secondary shadow-md transition-all active:scale-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 aria-label="Add to wishlist"
               >
                 <span className="material-symbols-outlined text-[20px]">favorite</span>
@@ -220,9 +223,9 @@ export function Hero({ featuredProduct }: HeroProps) {
           {/* Floating Bestseller Card (Bottom Left) */}
           <Link
             href="/shop?category=books"
-            className="absolute -bottom-6 -left-4 md:bottom-2 md:-left-6 z-20 bg-surface-container-lowest/95 backdrop-blur-md p-3.5 rounded-2xl shadow-xl flex items-center gap-3 max-w-[260px] hover:scale-105 transition-transform animate-float-delayed"
+            className="absolute bottom-0 left-1 sm:-bottom-4 sm:-left-2 md:bottom-2 md:-left-6 z-20 bg-surface-container-lowest/95 backdrop-blur-md p-2.5 sm:p-3.5 rounded-2xl shadow-xl flex items-center gap-2.5 sm:gap-3 max-w-[calc(100%-1rem)] sm:max-w-[260px] hover:scale-105 transition-transform animate-float-delayed"
           >
-            <div className="w-12 h-14 rounded-lg bg-surface-container overflow-hidden shrink-0 relative">
+            <div className="w-10 h-12 sm:w-12 sm:h-14 rounded-lg bg-surface-container overflow-hidden shrink-0 relative">
               <Image
                 src="/images/hero/bestsellers.svg"
                 alt="Indian Bestseller Books"
@@ -233,13 +236,13 @@ export function Hero({ featuredProduct }: HeroProps) {
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-label-sm text-label-sm text-secondary-container font-extrabold">
+              <span className="font-label-sm text-[11px] sm:text-label-sm text-secondary-container font-extrabold">
                 FLAT 40% OFF
               </span>
-              <span className="font-label-md text-label-md text-on-surface font-bold leading-snug">
+              <span className="font-label-md text-xs sm:text-label-md text-on-surface font-bold leading-snug">
                 Indian Bestsellers
               </span>
-              <span className="font-body-sm text-[11px] text-on-surface-variant">
+              <span className="font-body-sm text-[10px] sm:text-[11px] text-on-surface-variant">
                 Curated collections
               </span>
             </div>

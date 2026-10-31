@@ -14,6 +14,7 @@ import {
 import { validateCoupon, type Coupon } from "@/services/coupon.service";
 import { hydrateGuestCart } from "@/services/cart.service";
 import { createOrderSchema } from "@/lib/validations/checkout";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import type { CartItem } from "@/types/cart";
 
 /**
@@ -39,6 +40,22 @@ import type { CartItem } from "@/types/cart";
  */
 export async function POST(request: NextRequest) {
   try {
+    const ip = getClientIp(request.headers);
+    const rateLimit = checkRateLimit(`create-order:${ip}`, { limit: 15, windowSeconds: 60 });
+    if (!rateLimit.success) {
+      return NextResponse.json(
+        err("Too many checkout requests. Please wait a moment and try again."),
+        {
+          status: 429,
+          headers: {
+            "Retry-After": String(rateLimit.reset),
+            "X-RateLimit-Limit": String(rateLimit.limit),
+            "X-RateLimit-Remaining": "0",
+          },
+        }
+      );
+    }
+
     const body = await request.json();
     const parsed = createOrderSchema.safeParse(body);
     if (!parsed.success) {

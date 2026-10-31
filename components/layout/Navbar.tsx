@@ -12,7 +12,7 @@ export async function Navbar() {
     <header className="sticky top-0 z-40 w-full">
       <AnnouncementBar />
       <div className="bg-surface-container-lowest/85 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] transition-all">
-        <div className="max-w-[1360px] mx-auto px-margin h-20 flex items-center justify-between gap-gutter">
+        <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-margin h-16 md:h-20 flex items-center justify-between gap-2 sm:gap-gutter">
           {/* Brand Logo */}
           <div className="flex items-center gap-space-sm">
             <Link

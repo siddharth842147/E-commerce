@@ -9,3 +9,4 @@ export * from "./PromoBanner";
 export * from "./WhyKartiva";
 export * from "./Testimonials";
 export * from "./Newsletter";
+export * from "./PricingSection";

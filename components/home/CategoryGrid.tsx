@@ -85,7 +85,7 @@ export function CategoryGrid({ categories = [] }: CategoryGridProps) {
 
   return (
     <section className="w-full bg-surface-container-low py-space-xl" id="categories">
-      <div className="max-w-[1360px] mx-auto px-margin">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-margin">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-space-lg">
           <div>
             <span className="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">
@@ -101,17 +101,17 @@ export function CategoryGrid({ categories = [] }: CategoryGridProps) {
 
           <Link
             href="/shop"
-            className="inline-flex items-center gap-1.5 font-label-md text-label-md text-primary hover:text-primary-container font-bold group"
+            className="inline-flex items-center gap-1.5 font-label-md text-label-md text-primary hover:text-primary-container font-bold group rounded-lg px-2 py-1 -mr-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             <span>Explore all collections</span>
-            <span className="material-symbols-outlined text-[18px] transition-transform group-hover:translate-x-1">
+            <span className="material-symbols-outlined text-[18px] transition-transform duration-200 group-hover:translate-x-1">
               arrow_forward
             </span>
           </Link>
         </div>
 
         {/* 5-Column Responsive Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-md">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-space-md">
           {cardItems.map((cat) => (
             <CategoryCard key={cat.slug} category={cat} />
           ))}

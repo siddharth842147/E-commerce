@@ -30,17 +30,17 @@ export function IntroTyping({
   const line2Full = `Welcome to ${siteConfig.intro.brandName}`;
   const line3Full = siteConfig.intro.tagline;
 
-  const [displayedLine1, setDisplayedLine1] = useState("");
-  const [displayedLine2, setDisplayedLine2] = useState("");
-  const [displayedLine3, setDisplayedLine3] = useState("");
+  const [displayedLine1, setDisplayedLine1] = useState(reducedMotion ? line1Full : "");
+  const [displayedLine2, setDisplayedLine2] = useState(reducedMotion ? line2Full : "");
+  const [displayedLine3, setDisplayedLine3] = useState(reducedMotion ? line3Full : "");
   const [currentLine, setCurrentLine] = useState<1 | 2 | 3 | 4>(1);
 
-  // If reduced motion is requested, render everything immediately and signal completion
+  // If reduced motion is requested, signal completion
   useEffect(() => {
     if (reducedMotion) {
-      setDisplayedLine1(line1Full);
-      setDisplayedLine2(line2Full);
-      setDisplayedLine3(line3Full);
+      setDisplayedLine1((prev) => (prev ? prev : line1Full));
+      setDisplayedLine2((prev) => (prev ? prev : line2Full));
+      setDisplayedLine3((prev) => (prev ? prev : line3Full));
       const timer = setTimeout(() => onComplete(), 1000);
       return () => clearTimeout(timer);
     }

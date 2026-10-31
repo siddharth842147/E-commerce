@@ -97,9 +97,9 @@ export function FeaturedProducts({
 
   return (
     <section className="w-full py-space-xl bg-surface-container-low" id="featured">
-      <div className="max-w-[1360px] mx-auto px-margin">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-margin">
         {/* Section Header with Category Tabs */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-space-lg">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-space-lg">
           <div>
             <span className="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">
               Curated Showcase
@@ -110,15 +110,21 @@ export function FeaturedProducts({
           </div>
 
           {/* Filter Tabs */}
-          <div className="flex items-center gap-1.5 p-1.5 bg-surface-container rounded-2xl">
+          <div
+            role="tablist"
+            aria-label="Filter featured products"
+            className="flex items-center gap-1 sm:gap-1.5 p-1 sm:p-1.5 bg-surface-container rounded-2xl border border-outline-variant/40 overflow-x-auto no-scrollbar max-w-full"
+          >
             {tabs.map((tab) => (
               <button
                 key={tab.id}
+                role="tab"
+                aria-selected={activeTab === tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`filter-tab px-4 py-2 rounded-xl font-label-md text-label-md font-bold transition-all ${
+                className={`filter-tab px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl font-label-md text-xs sm:text-label-md font-bold whitespace-nowrap transition-all duration-200 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                   activeTab === tab.id
                     ? "bg-primary text-on-primary shadow-sm"
-                    : "text-on-surface-variant hover:text-on-surface"
+                    : "text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low"
                 }`}
               >
                 {tab.label}
@@ -128,7 +134,7 @@ export function FeaturedProducts({
         </div>
 
         {/* 4-Column Responsive Grid (8 Products) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-space-md">
           {displayedProducts.map((product, idx) => {
             const price = Number(product.price);
             const comparePrice = product.compareAtPrice ? Number(product.compareAtPrice) : null;
@@ -145,25 +151,28 @@ export function FeaturedProducts({
             return (
               <div
                 key={product.id}
-                className="group bg-surface-container-lowest rounded-3xl p-5 shadow-sm hover:shadow-xl transition-all duration-300 relative flex flex-col justify-between"
+                className="group bg-surface-container-lowest rounded-3xl p-5 shadow-sm border border-outline-variant/35 hover:border-primary/40 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative flex flex-col justify-between"
               >
                 <div>
                   <div className="relative aspect-square rounded-2xl overflow-hidden bg-surface-container mb-4">
-                    <Link href={`/shop/${product.slug}`} className="block w-full h-full">
+                    <Link
+                      href={`/shop/${product.slug}`}
+                      className="block w-full h-full rounded-2xl focus-visible:outline-2 focus-visible:outline-solid focus-visible:outline-primary focus-visible:-outline-offset-2"
+                    >
                       <Image
                         src={imageUrl}
                         alt={product.name}
                         width={360}
                         height={360}
                         unoptimized={imageUrl.endsWith(".svg")}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     </Link>
 
                     {/* Wishlist toggle */}
                     <button
                       onClick={(e) => toggleWishlist(e, product.id, product.name)}
-                      className={`absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-container-lowest/80 backdrop-blur-md flex items-center justify-center shadow transition-all active:scale-90 ${
+                      className={`absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-container-lowest/90 backdrop-blur-md flex items-center justify-center shadow transition-all active:scale-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                         isFav ? "text-rose-600" : "text-on-surface hover:text-rose-500"
                       }`}
                       aria-label="Add to wishlist"
@@ -179,7 +188,7 @@ export function FeaturedProducts({
                     </button>
 
                     {/* Badge */}
-                    <span className="absolute top-3 left-3 bg-primary text-on-primary font-label-sm text-[10px] uppercase font-bold px-2 py-0.5 rounded-full">
+                    <span className="absolute top-3 left-3 bg-primary text-on-primary font-label-sm text-[10px] uppercase font-bold px-2 py-0.5 rounded-full shadow-sm">
                       {idx % 2 === 0 ? "Trending" : "Hot Pick"}
                     </span>
                   </div>
@@ -192,6 +201,7 @@ export function FeaturedProducts({
                       <span
                         className="material-symbols-outlined text-[14px] text-amber-500 fill-1"
                         style={{ fontVariationSettings: "'FILL' 1" }}
+                        aria-hidden="true"
                       >
                         star
                       </span>
@@ -200,7 +210,10 @@ export function FeaturedProducts({
                     </div>
                   </div>
 
-                  <Link href={`/shop/${product.slug}`}>
+                  <Link
+                    href={`/shop/${product.slug}`}
+                    className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
+                  >
                     <h3 className="font-headline-sm text-headline-sm font-bold text-on-surface line-clamp-1 mb-2 hover:text-primary transition-colors">
                       {product.name}
                     </h3>
@@ -226,9 +239,10 @@ export function FeaturedProducts({
                 <button
                   onClick={(e) => handleAddToCart(e, product)}
                   disabled={addingId === product.id}
-                  className="add-to-cart-btn mt-3 w-full py-2.5 rounded-xl bg-primary text-on-primary font-label-md text-label-md font-bold hover:bg-primary-container transition-all flex items-center justify-center gap-1.5 shadow-sm active:scale-95 disabled:opacity-50"
+                  aria-label={`Add ${product.name} to cart`}
+                  className="add-to-cart-btn mt-3 w-full py-2.5 rounded-xl bg-primary text-on-primary font-label-md text-label-md font-bold hover:bg-primary-container transition-all duration-200 flex items-center justify-center gap-1.5 shadow-sm active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:opacity-50"
                 >
-                  <span className="material-symbols-outlined text-[18px]">
+                  <span className="material-symbols-outlined text-[18px]" aria-hidden="true">
                     {addingId === product.id ? "hourglass_empty" : "add_shopping_cart"}
                   </span>
                   <span>{addingId === product.id ? "Adding..." : "Add to Cart"}</span>

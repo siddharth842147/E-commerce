@@ -22,24 +22,25 @@ export function CategoryCard({ category }: CategoryCardProps) {
     <Link
       href={`/shop?category=${encodeURIComponent(category.slug)}`}
       id={`category-${category.slug}`}
-      className={`group relative rounded-3xl overflow-hidden p-5 flex flex-col justify-between min-h-[340px] bg-gradient-to-br ${category.gradient} text-white shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5`}
+      aria-label={`Shop ${category.title}, ${category.startingPrice}`}
+      className={`group relative rounded-3xl overflow-hidden p-4 sm:p-5 flex flex-col justify-between min-h-[280px] sm:min-h-[340px] bg-gradient-to-br ${category.gradient} text-white shadow-md hover:shadow-2xl border border-white/10 hover:border-white/25 transition-all duration-300 hover:-translate-y-1.5 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2`}
     >
       <div className="z-10 flex items-center justify-between">
         <span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md font-label-sm text-label-sm font-bold tracking-wide">
           {category.badge}
         </span>
-        <span className="material-symbols-outlined text-white/80 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform">
+        <span className="material-symbols-outlined text-white/80 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform" aria-hidden="true">
           north_east
         </span>
       </div>
 
       <div className="relative w-full h-36 my-auto flex items-center justify-center">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src={category.imageUrl}
           alt={category.title}
           width={180}
           height={180}
+          unoptimized={Boolean(category.imageUrl?.endsWith(".svg"))}
           className="h-32 w-auto object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
         />
       </div>

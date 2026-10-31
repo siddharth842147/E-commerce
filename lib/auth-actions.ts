@@ -102,12 +102,13 @@ export async function signUpWithEmail(formData: FormData): Promise<AuthResult> {
       }
 
       redirect("/account/profile");
-    } catch (e: any) {
-      if (e?.digest?.startsWith?.("NEXT_REDIRECT")) {
+    } catch (e: unknown) {
+      const err = e as { digest?: string; message?: string } | null;
+      if (err?.digest?.startsWith?.("NEXT_REDIRECT")) {
         throw e;
       }
       console.error("Admin user creation error:", e);
-      return { error: e?.message || "Failed to create account" };
+      return { error: err?.message || "Failed to create account" };
     }
   }
 
@@ -131,7 +132,7 @@ export async function sendPhoneOtp(formData: FormData): Promise<AuthResult> {
   if (error) {
     if (
       error.message?.toLowerCase().includes("unsupported phone provider") ||
-      (error as any).code === "phone_provider_disabled"
+      (error as { code?: string }).code === "phone_provider_disabled"
     ) {
       // Check if there is an existing account linked to this phone
       const rawPhone = parsed.data.phone.replace(/\D/g, "");

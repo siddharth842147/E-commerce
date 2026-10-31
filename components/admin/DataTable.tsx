@@ -42,6 +42,7 @@ interface DataTableProps<T> {
   emptyMessage?: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function DataTable<T extends Record<string, any>>({
   data,
   columns,
@@ -121,9 +122,13 @@ export function DataTable<T extends Record<string, any>>({
   }, [sortedData, currentPage, pageSize]);
 
   // Reset page when search or data length changes
-  React.useEffect(() => {
+  const [prevSearch, setPrevSearch] = React.useState(searchTerm);
+  const [prevDataLength, setPrevDataLength] = React.useState(data.length);
+  if (searchTerm !== prevSearch || data.length !== prevDataLength) {
+    setPrevSearch(searchTerm);
+    setPrevDataLength(data.length);
     setCurrentPage(1);
-  }, [searchTerm, data.length]);
+  }
 
   const handleSort = (key: string) => {
     if (sortKey === key) {
@@ -143,7 +148,7 @@ export function DataTable<T extends Record<string, any>>({
     const exportCols = columns.map((col) => ({
       key: col.key,
       label: col.header,
-      format: (val: any, row: T) => {
+      format: (val: unknown, row: T) => {
         if (col.exportFormat) return col.exportFormat(row);
         return String(val ?? "");
       },

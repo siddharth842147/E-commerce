@@ -88,7 +88,7 @@ export function NavbarClient({ user }: NavbarClientProps) {
       </nav>
 
       {/* Right Side Actions */}
-      <div className="flex items-center gap-space-md">
+      <div className="flex items-center gap-1.5 sm:gap-3 md:gap-space-md">
         {/* Search Bar */}
         <form
           onSubmit={handleSearchSubmit}
@@ -103,7 +103,8 @@ export function NavbarClient({ user }: NavbarClientProps) {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search products, brands..."
-            className="w-60 lg:w-64 pl-10 pr-12 py-2 bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-on-surface-variant/70"
+            aria-label="Search products, brands"
+            className="w-48 lg:w-64 pl-10 pr-12 py-2 bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-on-surface-variant/70"
           />
           <kbd className="absolute right-2.5 font-label-sm text-[11px] bg-surface-container-highest text-on-surface-variant px-1.5 py-0.5 rounded pointer-events-none select-none">
             ⌘K
@@ -113,10 +114,10 @@ export function NavbarClient({ user }: NavbarClientProps) {
         {/* Wishlist Button */}
         <Link
           href="/shop?filter=wishlist"
-          className="relative p-2 text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center rounded-xl hover:bg-surface-container-low"
+          className="relative min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] p-2 text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center rounded-xl hover:bg-surface-container-low"
           aria-label={`Wishlist (${wishlistCount} items)`}
         >
-          <span className="material-symbols-outlined text-[24px]">favorite</span>
+          <span className="material-symbols-outlined text-[22px] sm:text-[24px]">favorite</span>
           {wishlistCount > 0 && (
             <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-secondary text-on-secondary font-label-sm text-[10px] flex items-center justify-center leading-none">
               {wishlistCount}
@@ -127,10 +128,10 @@ export function NavbarClient({ user }: NavbarClientProps) {
         {/* Cart Button */}
         <Link
           href="/cart"
-          className="relative p-2 text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center rounded-xl hover:bg-surface-container-low"
+          className="relative min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] p-2 text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center rounded-xl hover:bg-surface-container-low"
           aria-label={`Cart (${itemCount} items)`}
         >
-          <span className="material-symbols-outlined text-[24px]">shopping_bag</span>
+          <span className="material-symbols-outlined text-[22px] sm:text-[24px]">shopping_bag</span>
           {itemCount > 0 && (
             <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[10px] font-bold flex items-center justify-center leading-none">
               {itemCount > 99 ? "99+" : itemCount}
@@ -141,7 +142,7 @@ export function NavbarClient({ user }: NavbarClientProps) {
         {/* User Account Menu */}
         {user ? (
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1.5 p-1 rounded-xl hover:bg-surface-container-low outline-none focus:ring-2 focus:ring-primary/20">
+            <DropdownMenuTrigger className="min-w-[40px] min-h-[40px] flex items-center justify-center gap-1.5 p-1 rounded-xl hover:bg-surface-container-low outline-none focus:ring-2 focus:ring-primary/20">
               <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold text-sm select-none">
                 {user.email ? user.email.charAt(0).toUpperCase() : "U"}
               </div>
@@ -187,10 +188,10 @@ export function NavbarClient({ user }: NavbarClientProps) {
         ) : (
           <Link
             href="/login"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-all"
+            className="flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-xl bg-primary text-on-primary font-label-md text-xs sm:text-label-md hover:bg-primary-container transition-all min-h-[38px] sm:min-h-[44px]"
           >
             <span className="material-symbols-outlined text-[18px]">person</span>
-            <span>Sign in</span>
+            <span className="hidden min-[380px]:inline">Sign in</span>
           </Link>
         )}
 
@@ -198,7 +199,7 @@ export function NavbarClient({ user }: NavbarClientProps) {
         <Sheet>
           <SheetTrigger asChild>
             <button
-              className="p-2 text-on-surface-variant hover:text-on-surface xl:hidden rounded-xl"
+              className="min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center p-2 text-on-surface-variant hover:text-on-surface xl:hidden rounded-xl"
               aria-label="Open mobile menu"
             >
               <span className="material-symbols-outlined text-[24px]">menu</span>

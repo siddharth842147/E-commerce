@@ -15,6 +15,8 @@ import {
   products,
   categories,
   reviews,
+  orderStatusEnum,
+  reviewStatusEnum,
 } from "@/db/schema";
 import { requireAdmin } from "@/lib/auth";
 import { ok, err, type ApiResponse } from "@/lib/api-response";
@@ -27,7 +29,7 @@ import {
   type UpdateCouponInput,
   type UpdateTrackingInput,
 } from "@/lib/validations/admin";
-import type { Coupon, Order, Payment, Profile, Review } from "@/types/db";
+import type { Coupon, Review } from "@/types/db";
 
 // ── Dashboard Data ──────────────────────────────────────────────────────────
 
@@ -275,7 +277,7 @@ export async function getAdminOrders(params: {
     const conditions = [];
 
     if (status && status !== "all") {
-      conditions.push(eq(orders.status, status as any));
+      conditions.push(eq(orders.status, status as (typeof orderStatusEnum.enumValues)[number]));
     }
 
     if (search && search.trim()) {
@@ -544,7 +546,7 @@ export async function updateOrderStatus(
     } else {
       await db
         .update(orders)
-        .set({ status: status as any, updatedAt: new Date() })
+        .set({ status: status as (typeof orderStatusEnum.enumValues)[number], updatedAt: new Date() })
         .where(eq(orders.id, orderId));
     }
 
@@ -626,8 +628,9 @@ export async function processRefund(
           await razorpay.payments.refund(payment.razorpayPaymentId, {
             amount: refundAmount,
           });
-        } catch (error: any) {
-          console.warn("Razorpay API refund error (recording DB refund):", error?.message);
+        } catch (error: unknown) {
+          const message = error instanceof Error ? error.message : String(error);
+          console.warn("Razorpay API refund error (recording DB refund):", message);
         }
       }
     }
@@ -845,8 +848,9 @@ export async function createCoupon(
 
     revalidatePath("/admin/coupons");
     return ok(coupon);
-  } catch (error: any) {
-    if (error?.message?.includes("unique")) {
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    if (message.includes("unique")) {
       return err("A coupon with this code already exists");
     }
     console.error("Failed to create coupon:", error);
@@ -887,8 +891,9 @@ export async function updateCoupon(
 
     revalidatePath("/admin/coupons");
     return ok(updated);
-  } catch (error: any) {
-    if (error?.message?.includes("unique")) {
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    if (message.includes("unique")) {
       return err("A coupon with this code already exists");
     }
     console.error("Failed to update coupon:", error);
@@ -967,7 +972,7 @@ export async function getAdminReviews(params: {
     const conditions = [];
 
     if (status && status !== "all") {
-      conditions.push(eq(reviews.status, status as any));
+      conditions.push(eq(reviews.status, status as (typeof reviewStatusEnum.enumValues)[number]));
     }
 
     if (search && search.trim()) {

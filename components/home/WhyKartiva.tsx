@@ -3,7 +3,7 @@ import { siteConfig } from "@/lib/siteConfig";
 export function WhyKartiva() {
   return (
     <section className="w-full py-space-xl bg-surface-container-low" id="why-us">
-      <div className="max-w-[1360px] mx-auto px-margin">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-margin">
         <div className="text-center max-w-2xl mx-auto mb-space-lg">
           <span className="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">
             Uncompromising Quality
@@ -16,13 +16,13 @@ export function WhyKartiva() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-space-md">
           {siteConfig.valueProps.map((prop, idx) => {
             const isSecondary = idx % 2 === 1;
             return (
               <div
                 key={prop.title}
-                className="bg-surface-container-lowest p-6 rounded-3xl shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col gap-3 group hover:-translate-y-1"
+                className="bg-surface-container-lowest p-5 sm:p-6 rounded-2xl sm:rounded-3xl shadow-sm border border-outline-variant/35 hover:border-primary/40 hover:shadow-xl transition-all duration-300 flex flex-col gap-3 group hover:-translate-y-1.5"
               >
                 <div
                   className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-110 ${
@@ -31,7 +31,7 @@ export function WhyKartiva() {
                       : "bg-primary-fixed text-primary"
                   }`}
                 >
-                  <span className="material-symbols-outlined text-[26px]">
+                  <span className="material-symbols-outlined text-[26px]" aria-hidden="true">
                     {prop.icon}
                   </span>
                 </div>

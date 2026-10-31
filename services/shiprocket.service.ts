@@ -9,7 +9,7 @@
  *  - Cancelling shipments
  */
 
-import { ok, err, type ApiResponse } from "@/lib/api-response";
+import { ok, type ApiResponse } from "@/lib/api-response";
 
 export interface ShiprocketOrderItem {
   name: string;
@@ -274,12 +274,14 @@ export async function getShiprocketTracking(
       const data = await res.json();
       const trackData = data?.tracking_data;
       if (trackData && trackData.track_status === 1) {
-        const shipmentScans = (trackData.shipment_track_activities || []).map((s: any) => ({
-          date: s.date,
-          activity: s.activity,
-          location: s.location,
-          srStatus: s["sr-status-label"],
-        }));
+        const shipmentScans = (trackData.shipment_track_activities || []).map(
+          (s: Record<string, unknown>) => ({
+            date: s.date as string | undefined,
+            activity: s.activity as string | undefined,
+            location: s.location as string | undefined,
+            srStatus: s["sr-status-label"] as string | undefined,
+          })
+        );
 
         return ok({
           awbCode: trackData.shipment_track?.[0]?.awb_code || awbOrOrderId,

@@ -13,14 +13,15 @@ import {
   PromoBanner,
   WhyKartiva,
   Testimonials,
+  PricingSection,
   Newsletter,
 } from "@/components/home";
 
 export const metadata: Metadata = {
-  title: "Kartiva — Premium Shopping Destination",
+  title: "Kartiva - Premium Shopping Destination",
   description: "Explore top-rated electronics, fashion, lifestyle products, and home essentials with best price guarantees.",
   openGraph: {
-    title: "Kartiva — Premium Shopping Destination",
+    title: "Kartiva - Premium Shopping Destination",
     description: "Explore top-rated electronics, fashion, lifestyle products, and home essentials with best price guarantees.",
     url: "/",
     images: [{ url: "/og-home.jpg", width: 1200, height: 630, alt: "Kartiva Store" }],
@@ -187,7 +188,12 @@ export default function HomePage() {
         <Testimonials />
       </FadeUp>
 
-      {/* 9. Newsletter Signup */}
+      {/* 9. Kartiva Club VIP Membership Plans */}
+      <FadeUp>
+        <PricingSection />
+      </FadeUp>
+
+      {/* 10. Newsletter Signup */}
       <FadeUp>
         <Newsletter />
       </FadeUp>

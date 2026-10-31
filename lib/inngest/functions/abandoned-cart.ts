@@ -4,7 +4,7 @@ import { dispatchNotification } from "@/services/notification.service";
 import AbandonedCartEmail from "@/components/emails/AbandonedCartEmail";
 import { db } from "@/db";
 import { cartItems, orders, productVariants, profiles } from "@/db/schema";
-import { and, eq, gte, inArray, sql } from "drizzle-orm";
+import { and, eq, gte } from "drizzle-orm";
 import { siteConfig } from "@/config/site";
 
 /**
@@ -105,7 +105,7 @@ export const abandonedCartFunction = inngest.createFunction(
 
       await dispatchNotification({
         userId,
-        eventType: "notification/cart.abandoned" as any,
+        eventType: "notification/cart.abandoned",
         data: {
           email: {
             subject: `Did you forget something? Your cart at ${siteConfig.name} is waiting!`,

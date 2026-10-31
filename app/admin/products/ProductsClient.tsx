@@ -775,6 +775,7 @@ export function ProductsClient({
                         key={idx}
                         className="group relative size-16 overflow-hidden rounded-lg border-2 border-primary/50 bg-muted"
                       >
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           src={src}
                           alt="new upload"

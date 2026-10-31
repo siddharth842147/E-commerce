@@ -7,6 +7,7 @@ import { ok, err } from "@/lib/api-response";
 import { verifyPaymentSchema } from "@/lib/validations/checkout";
 import { inngest } from "@/lib/inngest/client";
 import { triggerOrderConfirmedNotifications } from "@/lib/inngest/functions/order-confirmed";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 
 /**
  * POST /api/payments/verify
@@ -38,6 +39,22 @@ import { triggerOrderConfirmedNotifications } from "@/lib/inngest/functions/orde
  */
 export async function POST(request: NextRequest) {
   try {
+    const ip = getClientIp(request.headers);
+    const rateLimit = checkRateLimit(`verify-order:${ip}`, { limit: 30, windowSeconds: 60 });
+    if (!rateLimit.success) {
+      return NextResponse.json(
+        err("Too many payment verification attempts. Please wait a moment."),
+        {
+          status: 429,
+          headers: {
+            "Retry-After": String(rateLimit.reset),
+            "X-RateLimit-Limit": String(rateLimit.limit),
+            "X-RateLimit-Remaining": "0",
+          },
+        }
+      );
+    }
+
     const body = await request.json();
     const parsed = verifyPaymentSchema.safeParse(body);
     if (!parsed.success) {

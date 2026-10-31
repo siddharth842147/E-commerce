@@ -1,10 +1,11 @@
 /**
  * Converts an array of objects to a CSV string and triggers a browser download.
  */
-export function exportToCSV<T extends Record<string, unknown>>(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function exportToCSV<T extends Record<string, any>>(
   filename: string,
   rows: T[],
-  columns: { key: keyof T | string; label: string; format?: (val: any, row: T) => string }[]
+  columns: { key: keyof T | string; label: string; format?: (val: unknown, row: T) => string }[]
 ) {
   if (!rows || rows.length === 0) {
     alert("No data available to export.");
@@ -18,11 +19,14 @@ export function exportToCSV<T extends Record<string, unknown>>(
   const dataRows = rows.map((row) => {
     return columns
       .map((col) => {
-        let val: any;
+        let val: unknown;
         if (typeof col.key === "string" && col.key.includes(".")) {
           // Nested key access e.g. "customer.fullName"
           const parts = col.key.split(".");
-          val = parts.reduce((acc, part) => (acc ? (acc as any)[part] : undefined), row);
+          val = parts.reduce<unknown>(
+            (acc, part) => (acc && typeof acc === "object" ? (acc as Record<string, unknown>)[part] : undefined),
+            row
+          );
         } else {
           val = row[col.key as keyof T];
         }

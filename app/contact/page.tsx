@@ -64,7 +64,7 @@ export default function ContactPage() {
               >
                 +91 (80) 4912 3456
               </a>
-              <span className="text-[11px] text-muted-foreground mt-0.5">Mon – Sat, 9:00 AM – 7:00 PM IST</span>
+              <span className="text-[11px] text-muted-foreground mt-0.5">Mon - Sat, 9:00 AM - 7:00 PM IST</span>
             </div>
           </div>
 

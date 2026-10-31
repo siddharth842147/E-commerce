@@ -1,8 +1,8 @@
-﻿import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 
 // Mock iron-session
 const mockSession = {
-  items: [] as any[] | undefined,
+  items: [] as Record<string, unknown>[] | undefined,
   save: vi.fn(),
 };
 
