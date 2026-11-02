@@ -22,7 +22,7 @@ A production-ready, full-stack e-commerce platform built with Next.js 16 (App Ro
 
 ### Prerequisites
 
-- **Node.js**: v20.x or v22.x LTS
+- **Node.js**: v22.12.0 or newer (Netlify uses v22.23.3)
 - **npm** (or pnpm/yarn)
 - **PostgreSQL Database** (Supabase or local Postgres instance)
 
@@ -75,8 +75,7 @@ A production-ready, full-stack e-commerce platform built with Next.js 16 (App Ro
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Client & Server | Yes | Supabase public anonymous API key for client-side queries. |
 | `SUPABASE_SERVICE_ROLE_KEY` | **Server Only** | Yes | Secret service-role key for backend storage uploads & admin operations. **Never expose to browser.** |
 | `DATABASE_URL` | **Server Only** | Yes | PostgreSQL connection string. Use port `5432` / pooler for serverless deployments. |
-| `RAZORPAY_KEY_ID` | **Server Only** | Yes | Razorpay API Key ID for order creation and verification. |
-| `NEXT_PUBLIC_RAZORPAY_KEY_ID` | Client & Server | Yes | Matches `RAZORPAY_KEY_ID` for initializing the client checkout modal. |
+| `RAZORPAY_KEY_ID` | Server runtime | Yes | Razorpay API Key ID used to create orders and returned by the order API to initialize checkout. |
 | `RAZORPAY_KEY_SECRET` | **Server Only** | Yes | Razorpay Key Secret for cryptographic payment capture verification. |
 | `RAZORPAY_WEBHOOK_SECRET` | **Server Only** | Yes | Secret for validating `x-razorpay-signature` on `/api/payments/webhook`. |
 | `SESSION_SECRET` | **Server Only** | Yes | Minimum 32-character encryption key for guest cart cookies (`openssl rand -base64 32`). |
@@ -166,3 +165,9 @@ Before flipping your domain live to public traffic:
 - [ ] **Custom Domain & SSL**: Add your custom domain in Netlify / Cloudflare and verify HTTPS certificate provisioning.
 - [ ] **Email DNS**: Verify SPF, DKIM, and DMARC records in Resend for your sending domain (`@kartiva.com`).
 - [ ] **Smoke Test Checkout**: Perform a complete ₹1 test transaction end-to-end (Cart → Checkout → Razorpay → Order Confirmation → Invoice generation).
+
+### Payment credentials on Netlify
+
+Configure `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET`, and `RAZORPAY_WEBHOOK_SECRET` in the site's environment variables with Functions scope (or all scopes). Checkout reads its key ID from the server at request time; `NEXT_PUBLIC_RAZORPAY_KEY_ID` is no longer required. Keep secret values out of source files and Next.js `env` configuration, which embeds values into build output. Secrets scanning should remain enabled.
+
+If credentials were exposed in source or build artifacts, rotate them in the Razorpay dashboard and update the corresponding Netlify environment variables. Redeploy with a cleared build cache after updating credentials to remove cached artifacts containing old values.
