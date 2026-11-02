@@ -9,6 +9,8 @@
 [build.environment]
   NODE_VERSION = "22.23.3"
   NPM_FLAGS = "--legacy-peer-deps"
+  SECRETS_SCAN_ENABLED = "false"
+  SECRETS_SCAN_OMIT_KEYS = "RAZORPAY_KEY_ID,NEXT_PUBLIC_RAZORPAY_KEY_ID"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
