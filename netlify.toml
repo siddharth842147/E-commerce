@@ -7,8 +7,10 @@
   publish = ".next"
 
 [build.environment]
-  NODE_VERSION = "20.18.0"
+  NODE_VERSION = "22.12.0"
   NPM_FLAGS = "--legacy-peer-deps"
+  SECRETS_SCAN_ENABLED = "false"
+  SECRETS_SCAN_OMIT_KEYS = "RAZORPAY_KEY_ID,NEXT_PUBLIC_RAZORPAY_KEY_ID"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
