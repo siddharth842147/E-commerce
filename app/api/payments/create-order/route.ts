@@ -56,6 +56,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Read the checkout key at request time; NEXT_PUBLIC_ values are inlined
+    // into build output and can also drift from the server's Razorpay account.
+    const keyId = process.env.RAZORPAY_KEY_ID;
+    if (!keyId) {
+      return NextResponse.json(
+        err("Payment configuration is unavailable"),
+        { status: 503 }
+      );
+    }
+
     const body = await request.json();
     const parsed = createOrderSchema.safeParse(body);
     if (!parsed.success) {
@@ -207,7 +217,7 @@ export async function POST(request: NextRequest) {
         razorpayOrderId: rzp.id,
         amount: rzp.amount, // paise
         currency: rzp.currency,
-        keyId: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || process.env.RAZORPAY_KEY_ID || "rzp_test_mock",
+        keyId,
       }),
       { status: 200 }
     );
